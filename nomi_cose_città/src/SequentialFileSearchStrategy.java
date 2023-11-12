@@ -15,7 +15,7 @@ class SequentialFileSearchStrategy implements SearchStrategy {
     public boolean search(String word, List<String> files) {
         for (String filePath : files) {
             if (searchInFile(word, filePath)) {
-                return true; // Parola trovata in uno dei file
+                return true; 
             }
         }
         return false; // Parola non trovata nei file
