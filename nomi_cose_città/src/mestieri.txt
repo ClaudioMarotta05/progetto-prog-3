@@ -1,0 +1,50 @@
+
+Ingegnere
+Medico
+Avvocato
+Insegnante
+Pompiere
+Poliziotto
+Architetto
+Pilota
+Farmacista
+Cuoco
+Idraulico
+Elettricista
+Meccanico
+Fotografo
+Artista
+Giornalista
+Musicista
+Attore
+Regista
+Camionista
+Sarto
+Giardiniere
+Parrucchiere
+Barista
+Veterinario
+Banchiere
+Economista
+Biologo
+Geologo
+Psicologo
+Psichiatra
+Fisioterapista
+Dentista
+Chirurgo
+Cameriere
+Ottico
+Geometra
+Agricoltore
+Gruista
+Carrozziere
+Osteopata
+Tecnico informatico
+Vigile del fuoco
+Politicologo
+Consulente finanziario
+Copywriter
+Graphic designer
+Nutrizionista
+Fisico
