@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -19,22 +20,16 @@ public class MainSceneController implements Initializable{
     private TableView<Tabella> GG;
 
     @FXML
+    private TableView<Tabella> TotCol;
+
+    @FXML
+    private MenuButton menu;
+
+    @FXML
     private VBox Vbox;
 
     @FXML
     private Label Lettera;
-
-    @FXML
-    private Button Nome;
-
-    @FXML
-    private Button Cose;
-
-    @FXML
-    private Button Citta;
-
-    @FXML
-    private Button Frutta;
 
     @FXML
     private Button RL;
@@ -50,7 +45,7 @@ public class MainSceneController implements Initializable{
    boolean ColCitta = false;
    boolean ColFrutta = false;
    boolean RandomCharButton = true;
-   TableColumn<Tabella, String> Ctot = new TableColumn<>("TOT");
+   TableColumn<Tabella, String> TOT = new TableColumn<>("TOT");
    TableColumn<Tabella, String> Cnome = new TableColumn<>("Nome");
    TableColumn<Tabella, String> Ccose = new TableColumn<>("Cosa");
    TableColumn<Tabella, String> Ccitta = new TableColumn<>("Cittá");
@@ -75,6 +70,8 @@ public class MainSceneController implements Initializable{
         //Ccitta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("citta"));
         GG.getItems();
         GG.setVisible(false);
+
+        
     }
 
     
@@ -86,7 +83,7 @@ public class MainSceneController implements Initializable{
         Cnome.setCellValueFactory(new PropertyValueFactory<Tabella, String>("nome"));
         GG.getColumns().add(Cnome);
 
-        nuovaLarghezza = GG.getWidth() + 150.0; 
+        nuovaLarghezza = GG.getWidth() + 100.0; 
         
         Vbox.getChildren().addAll(label1,Campo1);
 
@@ -111,7 +108,7 @@ public class MainSceneController implements Initializable{
     }else{
             GG.getColumns().remove(Cnome);
             Vbox.getChildren().removeAll(label1, Campo1);
-            nuovaLarghezza = GG.getWidth() - 150.0; 
+            nuovaLarghezza = GG.getWidth() - 100.0; 
             GG.setMinWidth(nuovaLarghezza);
             GG.setPrefWidth(nuovaLarghezza);
             GG.setMaxWidth(Double.MAX_VALUE);
@@ -129,7 +126,7 @@ public class MainSceneController implements Initializable{
          Ccose.setCellValueFactory(new PropertyValueFactory<Tabella, String>("cosa"));
          GG.getColumns().add(Ccose);
 
-         nuovaLarghezza = GG.getWidth() + 150.0; 
+         nuovaLarghezza = GG.getWidth() + 100.0; 
         
 
         
@@ -153,14 +150,14 @@ public class MainSceneController implements Initializable{
     }else{
             GG.getColumns().remove(Ccose);
             Vbox.getChildren().removeAll(label2, Campo2);
-            nuovaLarghezza = GG.getWidth() - 150.0; 
+            nuovaLarghezza = GG.getWidth() - 100.0; 
             GG.setMinWidth(nuovaLarghezza);
             GG.setPrefWidth(nuovaLarghezza);
             GG.setMaxWidth(Double.MAX_VALUE);
             Ccose.setMinWidth(nuovaLarghezza / cont); 
             ColCosa = false;
     }
-
+  
         
 
          
@@ -173,7 +170,7 @@ public class MainSceneController implements Initializable{
         Ccitta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("citta"));
          GG.getColumns().add(Ccitta);
 
-        nuovaLarghezza = GG.getWidth() + 150.0; 
+        nuovaLarghezza = GG.getWidth() + 100.0; 
         
 
        
@@ -197,13 +194,14 @@ public class MainSceneController implements Initializable{
     }else{
             GG.getColumns().remove(Ccitta);
             Vbox.getChildren().removeAll(label3, Campo3);
-            nuovaLarghezza = GG.getWidth() - 150.0; 
+            nuovaLarghezza = GG.getWidth() - 100.0; 
             GG.setMinWidth(nuovaLarghezza);
             GG.setPrefWidth(nuovaLarghezza);
             GG.setMaxWidth(Double.MAX_VALUE);
             Ccitta.setMinWidth(nuovaLarghezza / cont); 
             ColCitta = false;
     }
+    
          
 
         
@@ -219,7 +217,7 @@ public class MainSceneController implements Initializable{
          Cfrutta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("frutta"));
          GG.getColumns().add(Cfrutta);
 
-         nuovaLarghezza = GG.getWidth() + 150.0; 
+         nuovaLarghezza = GG.getWidth() + 100.0; 
         
 
         
@@ -244,13 +242,14 @@ public class MainSceneController implements Initializable{
     }else{
             GG.getColumns().remove(Cfrutta);
             Vbox.getChildren().removeAll(label4, Campo4);
-            nuovaLarghezza = GG.getWidth() - 150.0; 
+            nuovaLarghezza = GG.getWidth() - 100.0; 
             GG.setMinWidth(nuovaLarghezza);
             GG.setPrefWidth(nuovaLarghezza);
             GG.setMaxWidth(Double.MAX_VALUE);
             Cfrutta.setMinWidth(nuovaLarghezza / cont); 
             ColFrutta = false;
     }
+    
          
 
     }
@@ -273,26 +272,24 @@ public class MainSceneController implements Initializable{
 
     @FXML
     void submit(ActionEvent event) {
-        double nuovaLarghezza;
-       
-        if(ColTot==false){
-             
-            Ctot.setCellValueFactory(new PropertyValueFactory<Tabella, String>("tot"));
-            GG.getColumns().add(Ctot);
-            nuovaLarghezza = GG.getWidth() + 150.0; 
-            cont += 1;
+    double nuovaLarghezza;
+       if(ColTot==false){
+          TOT.setCellValueFactory(new PropertyValueFactory<Tabella, String>("tot"));
+          TotCol.getColumns().add(TOT);
 
-            if (cont >= 2) {
-                 GG.setVisible(true);
-             }
+         nuovaLarghezza = TotCol.getWidth() + 100.0; 
+        
 
-            GG.setMinWidth(nuovaLarghezza);
-            GG.setPrefWidth(nuovaLarghezza);
-            GG.setMaxWidth(Double.MAX_VALUE);
+        
 
-             Ctot.setMinWidth(nuovaLarghezza / cont);
-             ColTot = true;
-        }
+        GG.setMinWidth(nuovaLarghezza);
+        GG.setPrefWidth(nuovaLarghezza);
+        GG.setMaxWidth(Double.MAX_VALUE);
+
+        TOT.setMinWidth(nuovaLarghezza / cont);
+        ColTot = true;
+    }
+           
 
         ObservableList<Tabella> TT = GG.getItems();
       
@@ -355,7 +352,10 @@ public class MainSceneController implements Initializable{
 
         TT.add(row);
 
-        GG.setItems(TT);
+        TotCol.setItems(TT);  
+        TotCol.refresh();
+
+        GG.setItems(TT); 
         GG.refresh();
 
         if(!RandomCharButton){

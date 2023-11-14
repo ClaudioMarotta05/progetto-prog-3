@@ -22,6 +22,7 @@ try {
   
   primaryStage.setTitle("Nomi,Cose,Cittá...");
         primaryStage.setScene(scene);
+        //primaryStage.setMaximized(true);
         primaryStage.show();
 } catch (IOException e) {
 }
