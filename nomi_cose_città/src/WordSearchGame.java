@@ -71,6 +71,6 @@ public class WordSearchGame {
             System.out.println("Parola trovata: " + foundWord);
         } else {
             System.out.println("Nessuna parola trovata con la lettera " + startingLetter + " nel file " + fileToSearch);
-        }
-    }
+        }
+    }
 }
