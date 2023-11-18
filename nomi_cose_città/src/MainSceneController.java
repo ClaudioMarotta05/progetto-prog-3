@@ -113,7 +113,9 @@ public class MainSceneController implements Initializable{
             GG.setPrefWidth(nuovaLarghezza);
             GG.setMaxWidth(Double.MAX_VALUE);
             Cnome.setMinWidth(nuovaLarghezza / cont); 
+            cont -= 1;
             ColNome = false;
+
          }
 
     }
@@ -155,6 +157,7 @@ public class MainSceneController implements Initializable{
             GG.setPrefWidth(nuovaLarghezza);
             GG.setMaxWidth(Double.MAX_VALUE);
             Ccose.setMinWidth(nuovaLarghezza / cont); 
+            cont -= 1;
             ColCosa = false;
     }
   
@@ -198,7 +201,8 @@ public class MainSceneController implements Initializable{
             GG.setMinWidth(nuovaLarghezza);
             GG.setPrefWidth(nuovaLarghezza);
             GG.setMaxWidth(Double.MAX_VALUE);
-            Ccitta.setMinWidth(nuovaLarghezza / cont); 
+            Ccitta.setMinWidth(nuovaLarghezza / cont);
+            cont -= 1; 
             ColCitta = false;
     }
     
@@ -247,6 +251,7 @@ public class MainSceneController implements Initializable{
             GG.setPrefWidth(nuovaLarghezza);
             GG.setMaxWidth(Double.MAX_VALUE);
             Cfrutta.setMinWidth(nuovaLarghezza / cont); 
+            cont -= 1;
             ColFrutta = false;
     }
     
@@ -277,16 +282,9 @@ public class MainSceneController implements Initializable{
           TOT.setCellValueFactory(new PropertyValueFactory<Tabella, String>("tot"));
           TotCol.getColumns().add(TOT);
 
-         nuovaLarghezza = TotCol.getWidth() + 100.0; 
-        
+         nuovaLarghezza = TotCol.getWidth(); 
 
-        
-
-        GG.setMinWidth(nuovaLarghezza);
-        GG.setPrefWidth(nuovaLarghezza);
-        GG.setMaxWidth(Double.MAX_VALUE);
-
-        TOT.setMinWidth(nuovaLarghezza / cont);
+        TOT.setMinWidth(nuovaLarghezza);
         ColTot = true;
     }
            
@@ -307,9 +305,11 @@ public class MainSceneController implements Initializable{
             }
         }
     }
+    
+
         if (ColCosa) {
              builder.setCosa(Campo2.getText());
-             if (Campo1.getText().length() > 0) {
+             if (Campo2.getText().length() > 0) {
 
                 char primaLetteraInserita = Campo2.getText().charAt(0);
                 
@@ -319,9 +319,10 @@ public class MainSceneController implements Initializable{
             }
         }
     }
-        if (ColCitta) {
+    
+    if (ColCitta) {
              builder.setCitta(Campo3.getText());
-             if (Campo1.getText().length() > 0) {
+             if (Campo3.getText().length() > 0) {
 
                 char primaLetteraInserita = Campo3.getText().charAt(0);
                 
@@ -331,9 +332,10 @@ public class MainSceneController implements Initializable{
             }
         }
     }
-        if (ColFrutta) {
+    
+    if (ColFrutta) {
              builder.setFrutta(Campo4.getText());
-             if (Campo1.getText().length() > 0) {
+             if (Campo4.getText().length() > 0) {
 
                 char primaLetteraInserita = Campo4.getText().charAt(0);
                 
@@ -352,11 +354,10 @@ public class MainSceneController implements Initializable{
 
         TT.add(row);
 
-        TotCol.setItems(TT);  
-        TotCol.refresh();
-
         GG.setItems(TT); 
         GG.refresh();
+        TotCol.setItems(TT);  
+        TotCol.refresh();
 
         if(!RandomCharButton){
              RL.setVisible(true);
