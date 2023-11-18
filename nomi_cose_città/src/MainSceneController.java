@@ -91,7 +91,7 @@ public class MainSceneController implements Initializable{
 
 
         
-        if (cont >= 2) {
+        if (cont >= 1) {
             
             GG.setVisible(true);
 
@@ -139,7 +139,7 @@ public class MainSceneController implements Initializable{
 
 
         
-        if (cont >= 2) {
+        if (cont >= 1) {
             
             GG.setVisible(true);
         }
@@ -184,7 +184,7 @@ public class MainSceneController implements Initializable{
         cont += 1; 
 
        
-        if (cont >= 2) {
+        if (cont >= 1) {
             
             GG.setVisible(true);
         }
@@ -232,7 +232,7 @@ public class MainSceneController implements Initializable{
 
         
        
-        if (cont >= 2) {
+        if (cont >= 1) {
             
             GG.setVisible(true);
         }
