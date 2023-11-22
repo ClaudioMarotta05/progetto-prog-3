@@ -65,9 +65,6 @@ public class MainSceneController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
        
-       // Cnome.setCellValueFactory(new PropertyValueFactory<Tabella, String>("nome"));
-        //Ccose.setCellValueFactory(new PropertyValueFactory<Tabella, String>("cose"));
-        //Ccitta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("citta"));
         GG.getItems();
         GG.setVisible(false);
 
