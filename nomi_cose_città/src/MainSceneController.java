@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextField; 
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
@@ -300,6 +300,8 @@ public class MainSceneController implements Initializable{
                     punteggio += 10;
                     builder.setTot(punteggio);
             }
+
+            
         }
     }
     
@@ -340,6 +342,8 @@ public class MainSceneController implements Initializable{
                     punteggio += 10;
                     builder.setTot(punteggio);
             }
+
+
         }
     }
 
