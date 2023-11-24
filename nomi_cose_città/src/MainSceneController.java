@@ -301,15 +301,12 @@ public class MainSceneController implements Initializable{
                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
                 boolean wordExists = sequentialSearch.searchWord(Campo1.getText(), "nomi.txt");
 
-                if(wordExists){
-                    punteggio += 20;
+                if(wordExists && primaLetteraInserita == LetteraCasuale){
+                    punteggio += 10;
                     builder.setTot(punteggio);
                 }
                 
-                if (primaLetteraInserita == LetteraCasuale) {
-                    punteggio += 10;
-                    builder.setTot(punteggio);
-            }
+               
 
             
         }
@@ -322,10 +319,13 @@ public class MainSceneController implements Initializable{
 
                 char primaLetteraInserita = Campo2.getText().charAt(0);
                 
-                if (primaLetteraInserita == LetteraCasuale) {
+                SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+                boolean wordExists = sequentialSearch.searchWord(Campo2.getText(), "cose.txt");
+
+                if(wordExists && primaLetteraInserita == LetteraCasuale){
                     punteggio += 10;
                     builder.setTot(punteggio);
-            }
+                }
         }
     }
     
@@ -335,10 +335,13 @@ public class MainSceneController implements Initializable{
 
                 char primaLetteraInserita = Campo3.getText().charAt(0);
                 
-                if (primaLetteraInserita == LetteraCasuale) {
+                SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+                boolean wordExists = sequentialSearch.searchWord(Campo3.getText(), "citta.txt");
+
+                if(wordExists && primaLetteraInserita == LetteraCasuale){
                     punteggio += 10;
                     builder.setTot(punteggio);
-            }
+                }
         }
     }
     
@@ -348,10 +351,13 @@ public class MainSceneController implements Initializable{
 
                 char primaLetteraInserita = Campo4.getText().charAt(0);
                 
-                if (primaLetteraInserita == LetteraCasuale) {
+                SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+                boolean wordExists = sequentialSearch.searchWord(Campo4.getText(), "frutta.txt");
+
+                if(wordExists && primaLetteraInserita == LetteraCasuale){
                     punteggio += 10;
                     builder.setTot(punteggio);
-            }
+                }
 
 
         }

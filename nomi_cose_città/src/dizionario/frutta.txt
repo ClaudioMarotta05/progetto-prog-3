@@ -1,7 +1,5 @@
 Mela
-
 Banana
-
 Arancia
 Limone
 Pesca
@@ -24,13 +22,13 @@ Ribes
 Fico
 Cachi
 Uva spina
-Noce di cocco
+cocco
 Avocado
 Pistacchio
 Guava
 Pompelmo
 Mango
-Ribes nero
+Ribes
 Lampone rosso
 Papaya
 Cacao
@@ -39,10 +37,8 @@ Frutto del dragone
 Cetriolo amaro
 Lychee
 Ginepro
-Bacca di goji
 Guanabana
 Feijoa
-Frutto della passione
 Guanabana
 Feijoa
 Cipolla

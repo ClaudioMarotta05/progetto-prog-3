@@ -11,8 +11,8 @@ Dubai
 Sydney
 Hong Kong
 Los Angeles
-San Francisco
-Rio de Janeiro
+SanFrancisco
+Rio 
 Città del Messico
 Barcellona
 Amsterdam
@@ -32,7 +32,6 @@ Dublino
 Praga
 Vienna
 Cairo
-Rio de Janeiro
 Stoccolma
 Città del Capo
 Vienna
