@@ -14,6 +14,8 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+
+
 public class MainSceneController implements Initializable{
 
     @FXML
@@ -295,6 +297,14 @@ public class MainSceneController implements Initializable{
             if (Campo1.getText().length() > 0) {
 
                 char primaLetteraInserita = Campo1.getText().charAt(0);
+
+                SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+                boolean wordExists = sequentialSearch.searchWord(Campo1.getText(), "nomi.txt");
+
+                if(wordExists){
+                    punteggio += 20;
+                    builder.setTot(punteggio);
+                }
                 
                 if (primaLetteraInserita == LetteraCasuale) {
                     punteggio += 10;

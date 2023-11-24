@@ -7848,13 +7848,12 @@ rosarietta
 rosarina
 rosarino
 rosario
-rosario luigi
 rosasco
 rosata
 rosato
 rosaura
 rosauro
-rose marie
+rose 
 roselda
 roselino
 roselio
@@ -8565,7 +8564,6 @@ tristano
 trofimena
 trovatore
 trusiana
-tsvetan georgiev
 tuccia
 tuccio
 tulio
@@ -8828,7 +8826,6 @@ verissimo
 vermondo
 vero
 veronica
-veronica silvia
 veronico
 verter
 verther
@@ -8888,8 +8885,6 @@ vincenzo
 vinceslao
 vinicia
 vinicio
-vinicio eurus
-vinicio gaspare
 viola
 violanda
 violando
@@ -9088,7 +9083,7 @@ zeno
 zenobia
 zenobio
 zenone
-zenovia andreea
+zenovia 
 zeo
 zerbina
 zerbino
