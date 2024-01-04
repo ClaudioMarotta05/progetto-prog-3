@@ -1,13 +1,14 @@
+package BUILDER;
 
-public class Builder {
-    int tot;
-    String nome;
-    String cosa;
-    String citta;
-    String frutta;
+public class BuilderTabella implements Builder{
+    private int tot;
+    private String nome;
+    private String cosa;
+    private String citta;
+    private String frutta;
 
 
-    public Builder() {
+    public BuilderTabella() {
     }
 
     public Builder setTot(int tot) {
@@ -36,6 +37,6 @@ public class Builder {
     }
 
     public Tabella build() {
-        return new Tabella(this);
+        return new Tabella(tot,nome,cosa,citta,frutta);
     }
 }

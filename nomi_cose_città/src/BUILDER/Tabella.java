@@ -1,4 +1,4 @@
-
+package BUILDER;
 public class Tabella {
     private int tot;
     private String nome;
@@ -6,12 +6,12 @@ public class Tabella {
     private String citta;
     private String frutta;
 
-    Tabella(Builder builder) {
-        this.tot = builder.tot;
-        this.nome = builder.nome;
-        this.cosa = builder.cosa;
-        this.citta = builder.citta;
-        this.frutta = builder.frutta;
+    Tabella(int tot, String nome, String cosa, String citta, String frutta) {
+        this.tot = tot;
+        this.nome = nome;
+        this.cosa = cosa;
+        this.citta = citta;
+        this.frutta = frutta;
     }
 
     public int getTot() {

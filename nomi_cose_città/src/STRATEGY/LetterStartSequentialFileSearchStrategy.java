@@ -1,3 +1,4 @@
+package STRATEGY;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,15 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-// Interfaccia per la strategia di ricerca
-interface SearchStrategy {
-    boolean searchWord(String word, String fileName);
-    String search(char startingLetter, String fileName);
-}
+
 
 
 // Implementazione della strategia di ricerca sequenziale basata sulla lettera iniziale
-class LetterStartSequentialFileSearchStrategy implements SearchStrategy {
+public class LetterStartSequentialFileSearchStrategy implements SearchStrategy {
     @Override
     public boolean searchWord(String word, String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader("nomi_cose_città/src/dizionario/" + fileName))) {
