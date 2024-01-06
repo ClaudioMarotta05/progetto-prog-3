@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -10,11 +9,11 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 
-public class SceneController {
+public class FinalSceneController {
      @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void playGame(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Scene2.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Scene.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -26,3 +25,12 @@ public class SceneController {
         }
     }
 }
+
+
+
+
+
+
+
+
+

@@ -4,21 +4,21 @@
 <?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="TOT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
    <children>
-      <TableView fx:id="GG" layoutX="89.0" layoutY="163.0" prefHeight="120.0" prefWidth="13.0">
+      <TableView fx:id="GG" layoutX="102.0" layoutY="101.0" prefHeight="135.0" prefWidth="13.0">
          <columns>
          </columns></TableView>
-      <VBox fx:id="Vbox" alignment="CENTER" layoutX="303.0" layoutY="323.0" prefHeight="200.0" prefWidth="180.0" />
-      <Label fx:id="Lettera" layoutX="115.0" layoutY="102.0" />
-      <Button fx:id="RL" layoutX="84.0" layoutY="57.0" mnemonicParsing="false" onAction="#randomChar" prefHeight="25.0" prefWidth="77.0" text="Lettera" />
-      <Button layoutX="302.0" layoutY="523.0" mnemonicParsing="false" onAction="#submit" prefHeight="25.0" prefWidth="182.0" text="Submit" />
-      <MenuButton layoutX="84.0" layoutY="317.0" mnemonicParsing="false" text="Menu">
+         
+      <HBox fx:id="Hbox" alignment="CENTER" layoutX="3.0" layoutY="460.0" prefHeight="63.0" prefWidth="779.0" />
+        
+      
+      <MenuButton fx:id="menu1" layoutX="597.0" layoutY="23.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="63.0" text="Menu">
         <items>
           <CheckMenuItem mnemonicParsing="false" onAction="#colonna1" text="Nome" />
           <CheckMenuItem mnemonicParsing="false" onAction="#colonna2" text="Cose" />
@@ -26,10 +26,20 @@
           <CheckMenuItem mnemonicParsing="false" onAction="#colonna4" text="Frutta" />
         </items>
       </MenuButton>
-      <TableView fx:id="TotCol" layoutX="646.0" layoutY="330.0" prefHeight="200.0" prefWidth="100.0">
+      <Label fx:id="Lettera" layoutX="700.0" layoutY="23.0">
+         <font>
+            <Font name="Bell MT Bold" size="30.0" />
+         </font></Label>
+      <Button fx:id="RL" layoutX="685.0" layoutY="23.0" mnemonicParsing="false" onAction="#randomChar" prefHeight="35.0" prefWidth="77.0" text="Lettera" />
+      <Button layoutX="302.0" layoutY="523.0" mnemonicParsing="false" onAction="#submit" prefHeight="25.0" prefWidth="182.0" text="Submit" />
+      
+      <TableView fx:id="TotCol" layoutX="272.0" layoutY="11.0" prefHeight="80.0" prefWidth="242.0">
         <columns>
        
         </columns>
       </TableView>
+
+      <Button fx:id="Start" layoutX="355.0" layoutY="266.0" mnemonicParsing="false" onAction="#startGame" prefHeight="35.0" prefWidth="77.0" text="START" />
+      <Button fx:id="Back" layoutX="-1.0" layoutY="-2.0" mnemonicParsing="false" onAction="#backToSettings" text="&lt;-" />
    </children>
 </AnchorPane>

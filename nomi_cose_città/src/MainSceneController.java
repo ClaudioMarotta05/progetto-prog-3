@@ -6,7 +6,11 @@ import BUILDER.BuilderTabella;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -14,8 +18,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField; 
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -25,19 +32,19 @@ import STRATEGY.LetterStartSequentialFileSearchStrategy;
 import STRATEGY.SearchStrategy;
 
 
+
 public class MainSceneController implements Initializable{
 
-    @FXML
-    private TableView<Tabella> GG;
+     @FXML
+     private TableView<Tabella> GG;
 
     @FXML
     private TableView<Tabella> TotCol;
 
-    @FXML
-    private MenuButton menu;
+   
+     @FXML
+    private HBox Hbox;
 
-    @FXML
-    private VBox Vbox;
 
     @FXML
     private Label Lettera;
@@ -45,16 +52,29 @@ public class MainSceneController implements Initializable{
     @FXML
     private Button RL;
 
+    @FXML
+    private Button Submit;
+   
+    @FXML
+    private Button Start;
+
+    @FXML
+    private Button Back;
+
+    @FXML
+    private MenuButton menu1;
+
     
 
    int cont = 0;
    int punteggio = 0;
    char LetteraCasuale;
+   
    boolean ColTot  = false;
-   boolean ColNome = false;
-   boolean ColCosa = false;
-   boolean ColCitta = false;
-   boolean ColFrutta = false;
+   boolean ColNome;
+   boolean ColCosa;
+   boolean ColCitta;
+   boolean ColFrutta;
    boolean RandomCharButton = true;
    TableColumn<Tabella, String> TOT = new TableColumn<>("TOT");
    TableColumn<Tabella, String> Cnome = new TableColumn<>("Nome");
@@ -70,19 +90,156 @@ public class MainSceneController implements Initializable{
    TextField Campo3 = new TextField();
    TextField Campo4 = new TextField();
 
+   
+    
+
 
     
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       
-        GG.getItems();
-        GG.setVisible(false);
 
+        RL.setVisible(false);
+        //Submit.setVisible(false);
+        TotCol.setVisible(false);
+        GG.setVisible(false);
+        menu1.setVisible(false);
+
+    }
         
+
+    public void setColValues(boolean ColNome, boolean ColCosa, boolean ColCitta, boolean ColFrutta) {
+        this.ColNome = ColNome;
+        this.ColCosa = ColCosa;
+        this.ColCitta = ColCitta;
+        this.ColFrutta = ColFrutta;
     }
 
     
+        
+    @FXML
+    void backToSettings(ActionEvent event)
+    {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Scene2.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            
+        }
+    }
+
+
+    
+
+
+
+    @FXML
+    void startGame(ActionEvent event) {
+
+        Start.setVisible(false);
+        RL.setVisible(true);
+        TotCol.setVisible(true);
+        GG.setVisible(true);
+        menu1.setVisible(true);
+
+         System.out.println("Il valore di numero è: " + ColNome);
+          System.out.println("Il valore di numero è: " + ColCosa);
+           System.out.println("Il valore di numero è: " + ColCitta);
+            System.out.println("Il valore di numero è: " + ColFrutta);
+
+       
+        double nuovaLarghezza = 0.0 ;
+
+        if(ColNome == true){
+            
+            Cnome.setCellValueFactory(new PropertyValueFactory<Tabella, String>("nome"));
+    
+            GG.getColumns().add(Cnome);
+    
+            nuovaLarghezza += 100.0; 
+            
+            Hbox.getChildren().addAll(label1,Campo1);
+    
+            cont += 1;
+    
+           GG.setMinWidth(nuovaLarghezza);
+        GG.setPrefWidth(nuovaLarghezza);
+        GG.setMaxWidth(Double.MAX_VALUE);
+        Cnome.setMinWidth(nuovaLarghezza / cont); 
+       
+            
+    
+            
+              
+            
+        }
+    
+            if(ColCosa == true){
+             Ccose.setCellValueFactory(new PropertyValueFactory<Tabella, String>("cosa"));
+             GG.getColumns().add(Ccose);
+    
+           nuovaLarghezza += 100.0; 
+            Hbox.getChildren().addAll(label2,Campo2);
+    
+            cont += 1;
+    
+            GG.setMinWidth(nuovaLarghezza);
+        GG.setPrefWidth(nuovaLarghezza);
+        GG.setMaxWidth(Double.MAX_VALUE);
+         Ccose.setMinWidth(nuovaLarghezza / cont);
+        
+
+           
+        }
+    
+    
+        if(ColCitta==true){
+            Ccitta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("citta"));
+             GG.getColumns().add(Ccitta);
+    
+         nuovaLarghezza += 100.0; 
+            Hbox.getChildren().addAll(label3,Campo3);
+
+             cont += 1;
+    
+              GG.setMinWidth(nuovaLarghezza);
+        GG.setPrefWidth(nuovaLarghezza);
+        GG.setMaxWidth(Double.MAX_VALUE);
+            Ccitta.setMinWidth(nuovaLarghezza / cont);
+
+           
+
+        }
+    
+    
+         if(ColFrutta==true){
+             Cfrutta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("frutta"));
+             GG.getColumns().add(Cfrutta);
+    
+            nuovaLarghezza += 100.0; 
+            Hbox.getChildren().addAll(label4,Campo4);
+    
+            cont += 1;
+    
+            
+            GG.setMinWidth(nuovaLarghezza);
+        GG.setPrefWidth(nuovaLarghezza);
+        GG.setMaxWidth(Double.MAX_VALUE);
+            Cfrutta.setMinWidth(nuovaLarghezza / cont);
+
+       
+
+           
+        }
+    
+  
+    }
+
     @FXML
     void colonna1(ActionEvent event) {
     double nuovaLarghezza;
@@ -93,17 +250,13 @@ public class MainSceneController implements Initializable{
 
         nuovaLarghezza = GG.getWidth() + 100.0; 
         
-        Vbox.getChildren().addAll(label1,Campo1);
+        Hbox.getChildren().addAll(label1,Campo1);
 
         cont += 1;
 
 
         
-        if (cont >= 1) {
-            
-            GG.setVisible(true);
-
-        }
+      
 
         GG.setMinWidth(nuovaLarghezza);
         GG.setPrefWidth(nuovaLarghezza);
@@ -115,7 +268,7 @@ public class MainSceneController implements Initializable{
         
     }else{
             GG.getColumns().remove(Cnome);
-            Vbox.getChildren().removeAll(label1, Campo1);
+            Hbox.getChildren().removeAll(label1, Campo1);
             nuovaLarghezza = GG.getWidth() - 100.0; 
             GG.setMinWidth(nuovaLarghezza);
             GG.setPrefWidth(nuovaLarghezza);
@@ -141,16 +294,13 @@ public class MainSceneController implements Initializable{
 
         
         
-        Vbox.getChildren().addAll(label2,Campo2);
+        Hbox.getChildren().addAll(label2,Campo2);
 
         cont += 1;
 
 
         
-        if (cont >= 1) {
-            
-            GG.setVisible(true);
-        }
+        
 
         GG.setMinWidth(nuovaLarghezza);
         GG.setPrefWidth(nuovaLarghezza);
@@ -159,7 +309,7 @@ public class MainSceneController implements Initializable{
         ColCosa = true;
     }else{
             GG.getColumns().remove(Ccose);
-            Vbox.getChildren().removeAll(label2, Campo2);
+            Hbox.getChildren().removeAll(label2, Campo2);
             nuovaLarghezza = GG.getWidth() - 100.0; 
             GG.setMinWidth(nuovaLarghezza);
             GG.setPrefWidth(nuovaLarghezza);
@@ -186,16 +336,13 @@ public class MainSceneController implements Initializable{
 
        
         
-        Vbox.getChildren().addAll(label3,Campo3);
+        Hbox.getChildren().addAll(label3,Campo3);
 
         
         cont += 1; 
 
        
-        if (cont >= 1) {
-            
-            GG.setVisible(true);
-        }
+       
 
         GG.setMinWidth(nuovaLarghezza);
         GG.setPrefWidth(nuovaLarghezza);
@@ -204,7 +351,7 @@ public class MainSceneController implements Initializable{
         ColCitta = true;
     }else{
             GG.getColumns().remove(Ccitta);
-            Vbox.getChildren().removeAll(label3, Campo3);
+            Hbox.getChildren().removeAll(label3, Campo3);
             nuovaLarghezza = GG.getWidth() - 100.0; 
             GG.setMinWidth(nuovaLarghezza);
             GG.setPrefWidth(nuovaLarghezza);
@@ -234,16 +381,13 @@ public class MainSceneController implements Initializable{
 
         
        
-        Vbox.getChildren().addAll(label4,Campo4);
+        Hbox.getChildren().addAll(label4,Campo4);
 
         cont += 1;
 
         
        
-        if (cont >= 1) {
-            
-            GG.setVisible(true);
-        }
+        
 
         GG.setMinWidth(nuovaLarghezza);
         GG.setPrefWidth(nuovaLarghezza);
@@ -253,7 +397,7 @@ public class MainSceneController implements Initializable{
         ColFrutta = true;
     }else{
             GG.getColumns().remove(Cfrutta);
-            Vbox.getChildren().removeAll(label4, Campo4);
+            Hbox.getChildren().removeAll(label4, Campo4);
             nuovaLarghezza = GG.getWidth() - 100.0; 
             GG.setMinWidth(nuovaLarghezza);
             GG.setPrefWidth(nuovaLarghezza);
@@ -262,13 +406,9 @@ public class MainSceneController implements Initializable{
             cont -= 1;
             ColFrutta = false;
     }
+}
     
-         
-
-    }
-
-
-
+    
      @FXML
     void randomChar(ActionEvent event) {
         Random random = new Random();
