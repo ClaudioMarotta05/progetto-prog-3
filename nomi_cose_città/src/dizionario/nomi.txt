@@ -1,5 +1,5 @@
 
-abaco
+Abaco
 abbondanza
 abbondanzia
 abbondanzio
@@ -1103,7 +1103,7 @@ bachisio
 badoglio
 baingia
 baingio
-balbina
+Balbina
 balbino
 balda
 baldasarre
@@ -1718,7 +1718,7 @@ clodomira
 clodomiro
 clodovea
 clodoveo
-cloe
+Cloe
 clora
 clori
 cloridano
@@ -2244,7 +2244,7 @@ drusiano
 drusilla
 druso
 drusolina
-duccia
+Duccia
 duccio
 duilia
 duilio
@@ -2417,7 +2417,7 @@ eligio
 elina
 elinda
 elindo
-elino
+Elino
 elio
 eliodora
 eliodoro
@@ -2935,7 +2935,7 @@ falda
 faldina
 faldino
 faldo
-faledra
+Faledra
 falena
 faleria
 falerina
@@ -3857,7 +3857,7 @@ gedeone
 gelardo
 gelasia
 gelasio
-gelfrido
+Gelfrido
 gelinda
 gelindo
 gelio
@@ -4455,7 +4455,7 @@ icaro
 icilia
 icilio
 ico
-iconio
+Iconio
 ida
 idalba
 idalberto
@@ -4797,7 +4797,7 @@ konrad
 krystyna halina
 krzysztof josef
 ladina
-ladino
+Ladino
 ladislao
 ladislava
 laerte
@@ -5272,7 +5272,7 @@ magdalo
 magenta
 maggina
 maggino
-maggio
+Maggio
 maggiolina
 maggiolino
 maggiore
@@ -5973,7 +5973,7 @@ neri
 neria
 neride
 nerina
-nerino
+Nerino
 nerio
 nero
 nerone
@@ -6111,7 +6111,7 @@ norio
 noris
 norma
 normanda
-normando
+Normando
 normanna
 normanno
 normo
@@ -6181,7 +6181,7 @@ obriana
 oceana
 oceania
 oceanio
-oceano
+Oceano
 oclerio
 oclide
 octavian
@@ -6984,7 +6984,7 @@ pancrazio
 pandolfa
 pandolfo
 panfila
-panfilia
+Panfilia
 panfilio
 panfilo
 pantalea
@@ -7339,7 +7339,7 @@ quirico
 quirina
 quirino
 quiro
-quisilio
+Quisilio
 rachela
 rachele
 rachelina
@@ -7348,7 +7348,7 @@ rachildo
 radames
 radamesse
 radamez
-radamisto
+Radamisto
 rade
 radegonda
 radiano
@@ -8061,7 +8061,7 @@ saverino
 saverio
 savia
 saviana
-saviano
+Saviano
 savina
 savino
 savio
@@ -8424,7 +8424,7 @@ teodorino
 teodoro
 teodosia
 teodosio
-teofila
+Teofila
 teofilo
 terenzia
 terenziano
@@ -8611,7 +8611,7 @@ ugolina
 ugolino
 ugone
 uguccione
-uldarico
+Uldarico
 ulderica
 ulderico
 ulderiga
@@ -8900,7 +8900,7 @@ violo
 virgilia
 virgilio
 virginia
-virginio
+Virginio
 viridiana
 virna
 viscardo
@@ -9078,7 +9078,7 @@ zemiro
 zena
 zenaide
 zenia
-zenio
+Zenio
 zeno
 zenobia
 zenobio

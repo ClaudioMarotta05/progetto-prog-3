@@ -41,10 +41,18 @@ public class LetterStartSequentialFileSearchStrategy implements SearchStrategy {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+    
+        System.out.println("Number of words found: " + wordsWithSameLetter.size());
+    
+        if (wordsWithSameLetter.isEmpty()) {
+            return ""; // O qualsiasi altra logica che vuoi gestire per nessuna parola trovata
+        }
+    
         Random random = new Random();
-        String randomWord = wordsWithSameLetter.get(random.nextInt(wordsWithSameLetter.size()));
+        int randomIndex = random.nextInt(wordsWithSameLetter.size());
+        String randomWord = wordsWithSameLetter.get(randomIndex);
         return randomWord;
     }
+    
 }
 

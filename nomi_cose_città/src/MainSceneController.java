@@ -75,6 +75,10 @@ public class MainSceneController implements Initializable{
     private MenuButton menu1;
 
 
+
+    
+
+
     
 
    int cont = 0;
@@ -102,6 +106,8 @@ public class MainSceneController implements Initializable{
    TextField Campo2 = new TextField();
    TextField Campo3 = new TextField();
    TextField Campo4 = new TextField();
+
+   
  
    
      
@@ -123,6 +129,8 @@ public class MainSceneController implements Initializable{
 
 
     }
+
+   
         
 
     public void setColValues(boolean ColNome, boolean ColCosa, boolean ColCitta, boolean ColFrutta) {
@@ -131,6 +139,7 @@ public class MainSceneController implements Initializable{
         this.ColCitta = ColCitta;
         this.ColFrutta = ColFrutta;
     }
+
 
     @FXML
     void addTables(ActionEvent event)
@@ -165,6 +174,10 @@ public class MainSceneController implements Initializable{
               v1.setMaxWidth(Double.MAX_VALUE);
            
         }
+
+        PlayerThreads playerThreads = new PlayerThreads(clonedTableViews);
+
+        playerThreads.startThreads(LetteraCasuale);
        
     }
         
@@ -288,7 +301,7 @@ public class MainSceneController implements Initializable{
            
         }
     
-  
+            
     }
 
     @FXML
@@ -437,10 +450,6 @@ public class MainSceneController implements Initializable{
 
         cont += 1;
 
-        
-       
-        
-
         GG.setMinWidth(nuovaLarghezza);
         GG.setPrefWidth(nuovaLarghezza);
         GG.setMaxWidth(Double.MAX_VALUE);
@@ -461,19 +470,20 @@ public class MainSceneController implements Initializable{
 }
     
     
-     @FXML
-    void randomChar(ActionEvent event) {
-        Random random = new Random();
-        int randomInt = random.nextInt(26);
-        char randomLetter = (char) ('A' + randomInt);
-        LetteraCasuale = randomLetter;
-       
-        Lettera.setText(String.valueOf(randomLetter));
-        RL.setVisible(false);
-        RandomCharButton = false;
+@FXML
+void randomChar(ActionEvent event) {
+    Random random = new Random();
+    int randomInt = random.nextInt(26);
+    char randomLetter = (char) ('A' + randomInt);
+    this.LetteraCasuale = randomLetter;
+   
+    Lettera.setText(String.valueOf(randomLetter));
+    RL.setVisible(false);
+    RandomCharButton = false; 
+}
 
 
-    }
+    
 
     @FXML
     void submit(ActionEvent event) {
