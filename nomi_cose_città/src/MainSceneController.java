@@ -3,6 +3,7 @@
 
 import BUILDER.BuilderTabella;
 
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,15 +20,18 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField; 
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
-
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 import BUILDER.Tabella;
+import PROTOTYPE.CustomTables;
 import STRATEGY.LetterStartSequentialFileSearchStrategy;
 import STRATEGY.SearchStrategy;
 
@@ -41,9 +45,15 @@ public class MainSceneController implements Initializable{
     @FXML
     private TableView<Tabella> TotCol;
 
+ 
+    private List<TableView<Tabella>> clonedTableViews = new ArrayList<>();
+
    
-     @FXML
+    @FXML
     private HBox Hbox;
+
+    @FXML
+    private VBox v1;
 
 
     @FXML
@@ -64,11 +74,14 @@ public class MainSceneController implements Initializable{
     @FXML
     private MenuButton menu1;
 
+
     
 
    int cont = 0;
    int punteggio = 0;
    char LetteraCasuale;
+   int numTab = 0;
+   
    
    boolean ColTot  = false;
    boolean ColNome;
@@ -89,6 +102,9 @@ public class MainSceneController implements Initializable{
    TextField Campo2 = new TextField();
    TextField Campo3 = new TextField();
    TextField Campo4 = new TextField();
+ 
+   
+     
 
    
     
@@ -105,6 +121,7 @@ public class MainSceneController implements Initializable{
         GG.setVisible(false);
         menu1.setVisible(false);
 
+
     }
         
 
@@ -115,7 +132,41 @@ public class MainSceneController implements Initializable{
         this.ColFrutta = ColFrutta;
     }
 
-    
+    @FXML
+    void addTables(ActionEvent event)
+    {
+         double nuovaLarghezza = 0.0;
+         int numCol = 0;
+        
+        
+        if(numTab<=2)
+        {
+            if (ColNome){
+                numCol++;
+            }
+            if (ColCosa){
+                numCol++;
+            }
+            if (ColCitta){
+                numCol++;
+            }
+            if (ColFrutta){
+                numCol++;
+            }
+            nuovaLarghezza += (numCol*100.0); 
+            numTab += 1;
+            CustomTables tableViewCloner = new CustomTables();
+            TableView<Tabella> clonedTableView = tableViewCloner.cloneTableViewStructure(GG);
+            clonedTableViews.add(clonedTableView);
+            v1.getChildren().addAll(clonedTableView);
+
+              v1.setMinWidth(nuovaLarghezza);
+              v1.setPrefWidth(nuovaLarghezza);
+              v1.setMaxWidth(Double.MAX_VALUE);
+           
+        }
+       
+    }
         
     @FXML
     void backToSettings(ActionEvent event)
@@ -167,7 +218,7 @@ public class MainSceneController implements Initializable{
     
             cont += 1;
     
-           GG.setMinWidth(nuovaLarghezza);
+        GG.setMinWidth(nuovaLarghezza);
         GG.setPrefWidth(nuovaLarghezza);
         GG.setMaxWidth(Double.MAX_VALUE);
         Cnome.setMinWidth(nuovaLarghezza / cont); 
@@ -189,9 +240,9 @@ public class MainSceneController implements Initializable{
             cont += 1;
     
             GG.setMinWidth(nuovaLarghezza);
-        GG.setPrefWidth(nuovaLarghezza);
-        GG.setMaxWidth(Double.MAX_VALUE);
-         Ccose.setMinWidth(nuovaLarghezza / cont);
+            GG.setPrefWidth(nuovaLarghezza);
+            GG.setMaxWidth(Double.MAX_VALUE);
+            Ccose.setMinWidth(nuovaLarghezza / cont);
         
 
            
@@ -247,7 +298,6 @@ public class MainSceneController implements Initializable{
         
         Cnome.setCellValueFactory(new PropertyValueFactory<Tabella, String>("nome"));
         GG.getColumns().add(Cnome);
-
         nuovaLarghezza = GG.getWidth() + 100.0; 
         
         Hbox.getChildren().addAll(label1,Campo1);
@@ -265,6 +315,8 @@ public class MainSceneController implements Initializable{
 
         
             ColNome = true;
+
+        
         
     }else{
             GG.getColumns().remove(Cnome);

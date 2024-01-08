@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="TOT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
@@ -15,7 +16,7 @@
          <columns>
          </columns></TableView>
          
-      <HBox fx:id="Hbox" alignment="CENTER" layoutX="3.0" layoutY="460.0" prefHeight="63.0" prefWidth="779.0" />
+      <HBox fx:id="Hbox" alignment="CENTER" layoutX="3.0" layoutY="478.0" prefHeight="45.0" prefWidth="779.0" />
         
       
       <MenuButton fx:id="menu1" layoutX="597.0" layoutY="23.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="63.0" text="Menu">
@@ -41,5 +42,7 @@
 
       <Button fx:id="Start" layoutX="355.0" layoutY="266.0" mnemonicParsing="false" onAction="#startGame" prefHeight="35.0" prefWidth="77.0" text="START" />
       <Button fx:id="Back" layoutX="-1.0" layoutY="-2.0" mnemonicParsing="false" onAction="#backToSettings" text="&lt;-" />
+      <Button fx:id="new" layoutX="102.0" layoutY="28.0" mnemonicParsing="false" onAction="#addTables" text="NEW" />
+      <VBox fx:id="v1" layoutX="269.0" layoutY="309.0" prefHeight="117.0" prefWidth="255.0" />
    </children>
 </AnchorPane>
