@@ -214,6 +214,25 @@ public class MainSceneController implements Initializable{
             FF.add(row);
             clonedTableView.setItems(FF); 
 
+
+            Tabella[] dataArray = FF.toArray(new Tabella[0]);
+
+        // Stampare tutte le parole presenti nell'array
+        for (Tabella tabella : dataArray) {
+            String nome = tabella.getNome(); // Ottieni il valore del campo 'nome'
+            String cosa = tabella.getCosa(); // Ottieni il valore del campo 'cosa'
+            String citta = tabella.getCitta(); // Ottieni il valore del campo 'citta'
+            String frutta = tabella.getFrutta(); // Ottieni il valore del campo 'frutta'
+
+            // Stampa le parole
+            System.out.println("Nome: " + nome);
+            System.out.println("Cosa: " + cosa);
+            System.out.println("Città: " + citta);
+            System.out.println("Frutta: " + frutta);
+        }
+
+        
+
            
           }
     }
