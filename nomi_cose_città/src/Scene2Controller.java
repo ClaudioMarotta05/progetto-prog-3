@@ -28,19 +28,19 @@ public class Scene2Controller {
     @FXML
     public void setCat2(ActionEvent event) {
         this.cose = !this.cose;
-        System.out.println("Valore di nome: " + this.cose);
+        System.out.println("Valore di cosa: " + this.cose);
     }
 
     @FXML
     public void setCat3(ActionEvent event) {
         this.citta = !this.citta;
-        System.out.println("Valore di nome: " + this.citta);
+        System.out.println("Valore di citta: " + this.citta);
     }
 
     @FXML
     public void setCat4(ActionEvent event) {
         this.frutta = !this.frutta;
-        System.out.println("Valore di nome: " + this.frutta);
+        System.out.println("Valore di frutta: " + this.frutta);
     }
 
     public boolean getNome() {

@@ -72,6 +72,9 @@ public class MainSceneController implements Initializable{
     private Button Back;
 
     @FXML
+    private Button parolaNuova;
+
+    @FXML
     private MenuButton menu1;
 
 
@@ -94,10 +97,10 @@ public class MainSceneController implements Initializable{
    boolean ColFrutta;
    boolean RandomCharButton = true;
    TableColumn<Tabella, String> TOT = new TableColumn<>("TOT");
-   TableColumn<Tabella, String> Cnome = new TableColumn<>("Nome");
-   TableColumn<Tabella, String> Ccose = new TableColumn<>("Cosa");
-   TableColumn<Tabella, String> Ccitta = new TableColumn<>("Cittá");
-   TableColumn<Tabella, String> Cfrutta = new TableColumn<>("Frutta");
+   TableColumn<Tabella, String> Cnome = new TableColumn<>("nome");
+   TableColumn<Tabella, String> Ccose = new TableColumn<>("cosa");
+   TableColumn<Tabella, String> Ccitta = new TableColumn<>("cittá");
+   TableColumn<Tabella, String> Cfrutta = new TableColumn<>("frutta");
    Label label1 = new Label("Nome: ");
    Label label2 = new Label("Cose: ");
    Label label3 = new Label("Cittá: ");
@@ -106,6 +109,10 @@ public class MainSceneController implements Initializable{
    TextField Campo2 = new TextField();
    TextField Campo3 = new TextField();
    TextField Campo4 = new TextField();
+
+   
+
+    
 
    
  
@@ -164,8 +171,11 @@ public class MainSceneController implements Initializable{
             }
             nuovaLarghezza += (numCol*100.0); 
             numTab += 1;
+
             CustomTables tableViewCloner = new CustomTables();
             TableView<Tabella> clonedTableView = tableViewCloner.cloneTableViewStructure(GG);
+
+            clonedTableView.setId("TableView_" + numTab);
             clonedTableViews.add(clonedTableView);
             v1.getChildren().addAll(clonedTableView);
 
@@ -175,11 +185,41 @@ public class MainSceneController implements Initializable{
            
         }
 
-        PlayerThreads playerThreads = new PlayerThreads(clonedTableViews);
+       
 
-        playerThreads.startThreads(LetteraCasuale);
+
+        
+
+
+        //PlayerThreads playerThreads = new PlayerThreads(clonedTableViews);
+
+        //playerThreads.startThreads(LetteraCasuale);
        
     }
+
+    @FXML
+    void aggParole(ActionEvent event)
+    {
+        String nuovaParola = "NuovaParola";
+
+        for (TableView<Tabella> clonedTableView : clonedTableViews) {
+
+            ObservableList<Tabella> FF = clonedTableView.getItems();
+
+            BuilderTabella builder = new BuilderTabella();
+            builder.setNome(nuovaParola);
+
+            Tabella row = builder.build();
+            
+            FF.add(row);
+            clonedTableView.setItems(FF); 
+
+           
+          }
+    }
+
+
+
         
     @FXML
     void backToSettings(ActionEvent event)
@@ -487,12 +527,14 @@ void randomChar(ActionEvent event) {
 
     @FXML
     void submit(ActionEvent event) {
+
+        
     double nuovaLarghezza;
        if(ColTot==false){
           TOT.setCellValueFactory(new PropertyValueFactory<Tabella, String>("tot"));
           TotCol.getColumns().add(TOT);
 
-         nuovaLarghezza = TotCol.getWidth(); 
+         nuovaLarghezza = TotCol.getWidth();   
 
         TOT.setMinWidth(nuovaLarghezza);
         ColTot = true;
@@ -502,9 +544,11 @@ void randomChar(ActionEvent event) {
         ObservableList<Tabella> TT = GG.getItems();
       
         BuilderTabella builder = new BuilderTabella();
-
+        
+ 
         if (ColNome) {
              builder.setNome(Campo1.getText());
+
             if (Campo1.getText().length() > 0) {
 
                 char primaLetteraInserita = Campo1.getText().charAt(0);
@@ -578,12 +622,13 @@ void randomChar(ActionEvent event) {
 
         
 
+       
         Tabella row = builder.build();
-
         TT.add(row);
 
         GG.setItems(TT); 
         GG.refresh();
+
         TotCol.setItems(TT);  
         TotCol.refresh();
 
