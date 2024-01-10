@@ -24,7 +24,10 @@ public class CustomTables implements prototype{
                 clonedCol.setCellValueFactory(new PropertyValueFactory<>("citta"));
             } else if (col.getText().equals("frutta")) {
                 clonedCol.setCellValueFactory(new PropertyValueFactory<>("frutta"));
+            }else if (col.getText().equals("tot")) {
+                clonedCol.setCellValueFactory(new PropertyValueFactory<>("tot"));
             }
+
            
 
             clonedTableView.getColumns().add(clonedCol);

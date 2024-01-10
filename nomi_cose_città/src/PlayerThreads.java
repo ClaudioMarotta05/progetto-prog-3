@@ -20,7 +20,7 @@ public class PlayerThreads {
     }
 
     private int insertedWords = 0;
-
+   
 
    
 
@@ -56,13 +56,13 @@ public class PlayerThreads {
 
         if (!word.isEmpty()) {
             Platform.runLater(() -> {
+               
                  ObservableList<Tabella> TT = tableView.getItems();
         BuilderTabella builder = new BuilderTabella();
 
         Tabella currentRow;
         if (TT.isEmpty()) {
             currentRow = builder
-                .setTot(0)
                 .setNome("")
                 .setCosa("")
                 .setCitta("")
@@ -98,6 +98,7 @@ public class PlayerThreads {
                      stopThreads();
                 }
 
+             
                 tableView.refresh();
             });
         }
@@ -105,5 +106,6 @@ public class PlayerThreads {
 
     public void stopThreads() {
         running = false;
+        
     }
 }

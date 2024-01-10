@@ -42,8 +42,6 @@ public class MainSceneController implements Initializable{
      @FXML
      private TableView<Tabella> GG;
 
-    @FXML
-    private TableView<Tabella> TotCol;
 
  
     private List<TableView<Tabella>> clonedTableViews = new ArrayList<>();
@@ -90,13 +88,13 @@ public class MainSceneController implements Initializable{
    int numTab = 0;
    
    
-   boolean ColTot  = false;
+   boolean ColTot  = true;
    boolean ColNome;
    boolean ColCosa;
    boolean ColCitta;
    boolean ColFrutta;
    boolean RandomCharButton = true;
-   TableColumn<Tabella, String> TOT = new TableColumn<>("TOT");
+   TableColumn<Tabella, String> TOT = new TableColumn<>("tot");
    TableColumn<Tabella, String> Cnome = new TableColumn<>("nome");
    TableColumn<Tabella, String> Ccose = new TableColumn<>("cosa");
    TableColumn<Tabella, String> Ccitta = new TableColumn<>("citta");
@@ -130,7 +128,6 @@ public class MainSceneController implements Initializable{
 
         RL.setVisible(false);
         //Submit.setVisible(false);
-        TotCol.setVisible(false);
         GG.setVisible(false);
         menu1.setVisible(false);
 
@@ -169,6 +166,10 @@ public class MainSceneController implements Initializable{
             if (ColFrutta){
                 numCol++;
             }
+             if (ColTot){
+                numCol++;
+            }
+            
             nuovaLarghezza += (numCol*100.0); 
             numTab += 1;
 
@@ -188,7 +189,7 @@ public class MainSceneController implements Initializable{
                 System.out.println(row.getNome() + " - " + row.getCosa() + " - " + row.getCitta() + " - " + row.getFrutta());
             }
 
-            clonedTableView.setId("TableView_" + numTab);
+            
             clonedTableViews.add(clonedTableView);
             v1.getChildren().addAll(clonedTableView);
 
@@ -239,7 +240,6 @@ public class MainSceneController implements Initializable{
 
         Start.setVisible(false);
         RL.setVisible(true);
-        TotCol.setVisible(true);
         GG.setVisible(true);
         menu1.setVisible(true);
 
@@ -331,6 +331,23 @@ public class MainSceneController implements Initializable{
        
 
            
+        }
+
+
+          if(ColTot==true){
+             TOT.setCellValueFactory(new PropertyValueFactory<Tabella, String>("tot"));
+             GG.getColumns().add(TOT);
+    
+            nuovaLarghezza += 100.0; 
+          
+            cont += 1;
+    
+            
+            GG.setMinWidth(nuovaLarghezza);
+            GG.setPrefWidth(nuovaLarghezza);
+            GG.setMaxWidth(Double.MAX_VALUE);
+            TOT.setMinWidth(nuovaLarghezza / cont);
+
         }
     
             
@@ -525,18 +542,6 @@ void randomChar(ActionEvent event) {
     @FXML
     void submit(ActionEvent event) {
 
-        
-    double nuovaLarghezza;
-       if(ColTot==false){
-          TOT.setCellValueFactory(new PropertyValueFactory<Tabella, String>("tot"));
-          TotCol.getColumns().add(TOT);
-
-         nuovaLarghezza = TotCol.getWidth();   
-
-        TOT.setMinWidth(nuovaLarghezza);
-        ColTot = true;
-    }
-           
 
         ObservableList<Tabella> TT = GG.getItems();
       
@@ -551,7 +556,7 @@ void randomChar(ActionEvent event) {
                 char primaLetteraInserita = Campo1.getText().charAt(0);
 
                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                boolean wordExists = sequentialSearch.searchWord(Campo1.getText(), "nomi.txt");
+                boolean wordExists = sequentialSearch.searchWord(Campo1.getText(), "nome.txt");
 
                 if(wordExists && primaLetteraInserita == LetteraCasuale){
                     punteggio += 10;
@@ -572,7 +577,7 @@ void randomChar(ActionEvent event) {
                 char primaLetteraInserita = Campo2.getText().charAt(0);
                 
                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                boolean wordExists = sequentialSearch.searchWord(Campo2.getText(), "cose.txt");
+                boolean wordExists = sequentialSearch.searchWord(Campo2.getText(), "cosa.txt");
 
                 if(wordExists && primaLetteraInserita == LetteraCasuale){
                     punteggio += 10;
@@ -625,9 +630,6 @@ void randomChar(ActionEvent event) {
 
         GG.setItems(TT); 
         GG.refresh();
-
-        TotCol.setItems(TT);  
-        TotCol.refresh();
 
         if(!RandomCharButton){
              RL.setVisible(true);

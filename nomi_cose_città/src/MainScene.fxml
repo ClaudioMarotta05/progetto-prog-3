@@ -34,12 +34,7 @@
       <Button fx:id="RL" layoutX="685.0" layoutY="23.0" mnemonicParsing="false" onAction="#randomChar" prefHeight="35.0" prefWidth="77.0" text="Lettera" />
       <Button layoutX="302.0" layoutY="523.0" mnemonicParsing="false" onAction="#submit" prefHeight="25.0" prefWidth="182.0" text="Submit" />
       
-      <TableView fx:id="TotCol" layoutX="272.0" layoutY="11.0" prefHeight="80.0" prefWidth="242.0">
-        <columns>
-       
-        </columns>
-      </TableView>
-
+     
       <Button fx:id="Start" layoutX="355.0" layoutY="266.0" mnemonicParsing="false" onAction="#startGame" prefHeight="35.0" prefWidth="77.0" text="START" />
       <Button fx:id="Back" layoutX="-1.0" layoutY="-2.0" mnemonicParsing="false" onAction="#backToSettings" text="&lt;-" />
       <Button fx:id="new" layoutX="102.0" layoutY="28.0" mnemonicParsing="false" onAction="#addTables" text="NEW" />
