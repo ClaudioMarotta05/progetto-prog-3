@@ -204,9 +204,7 @@ public class MainSceneController implements Initializable{
         
 
 
-        //PlayerThreads playerThreads = new PlayerThreads(clonedTableViews);
-
-        //playerThreads.startThreads(LetteraCasuale);
+       
        
     }
 
@@ -514,6 +512,11 @@ void randomChar(ActionEvent event) {
     Lettera.setText(String.valueOf(randomLetter));
     RL.setVisible(false);
     RandomCharButton = false; 
+
+
+    PlayerThreads playerThreads = new PlayerThreads(clonedTableViews);
+
+    playerThreads.startThreads(LetteraCasuale);
 }
 
 

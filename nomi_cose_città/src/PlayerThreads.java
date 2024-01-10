@@ -1,7 +1,9 @@
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+
 import java.util.List;
 
-import javafx.application.Platform;
-import javafx.scene.control.TableColumn;
 import BUILDER.BuilderTabella;
 import BUILDER.Tabella;
 import STRATEGY.LetterStartSequentialFileSearchStrategy;
@@ -17,6 +19,11 @@ public class PlayerThreads {
         this.running = true;
     }
 
+    private int insertedWords = 0;
+
+
+   
+
     public void startThreads(char L) {
         for (TableView<Tabella> tableView : clonedTableViews) {
             Thread tableThread = new Thread(() -> {
@@ -24,25 +31,7 @@ public class PlayerThreads {
                     try {
                         for (TableColumn<Tabella, ?> column : tableView.getColumns()) {
                             String columnHeaderText = column.getText();
-                            if (columnHeaderText.equals("nome")) {
-                                SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                                String word = sequentialSearch.search(L, "nomi.txt");
-                                System.out.println("Word found for 'Nome' column: " + word);
-    
-                                if (!word.isEmpty()) {
-                                    Platform.runLater(() -> {
-                                        BuilderTabella builder = new BuilderTabella();
-                                        builder.setNome(word);
-                                        Tabella newTableRow = builder.build();
-    
-                                        tableView.getItems().add(newTableRow);
-                                        tableView.refresh();
-                                        System.out.println("Word added to 'Nome' column in TableView");
-                                    });
-                                    return;
-                                }
-                            }
-                           
+                            searchAndAddData(tableView, columnHeaderText, L);
                         }
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {
@@ -52,10 +41,67 @@ public class PlayerThreads {
             });
             tableThread.setDaemon(true);
             tableThread.start();
+
+
+             
+        }
+
+        
+    }
+
+    private void searchAndAddData(TableView<Tabella> tableView, String columnHeaderText, char L) {
+        SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+        String word = sequentialSearch.search(L, columnHeaderText.toLowerCase() + ".txt");
+        System.out.println("Word found for '" + columnHeaderText + "' column: " + word);
+
+        if (!word.isEmpty()) {
+            Platform.runLater(() -> {
+                 ObservableList<Tabella> TT = tableView.getItems();
+        BuilderTabella builder = new BuilderTabella();
+
+        Tabella currentRow;
+        if (TT.isEmpty()) {
+            currentRow = builder
+                .setTot(0)
+                .setNome("")
+                .setCosa("")
+                .setCitta("")
+                .setFrutta("")
+                .build();
+            TT.add(currentRow);
+        } else {
+            currentRow = TT.get(0);
+        }
+
+        // Impostazione della parola nella colonna corrispondente in base al testo dell'intestazione
+        switch (columnHeaderText.toLowerCase()) {
+            case "nome":
+                currentRow.setNome(word);
+                break;
+            case "cosa":
+                currentRow.setCosa(word);
+                break;
+            case "citta":
+                currentRow.setCitta(word);
+                break;
+            case "frutta":
+                currentRow.setFrutta(word);
+                break;
+            default:
+                break;
+                }
+
+                int numberOfColumns = tableView.getColumns().size();
+
+                insertedWords++;
+                if (insertedWords >= numberOfColumns) {
+                     stopThreads();
+                }
+
+                tableView.refresh();
+            });
         }
     }
-    
-
 
     public void stopThreads() {
         running = false;

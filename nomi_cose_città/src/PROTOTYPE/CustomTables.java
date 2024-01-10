@@ -30,7 +30,7 @@ public class CustomTables implements prototype{
             clonedTableView.getColumns().add(clonedCol);
         }
 
-        clonedTableView.setItems(originalTableView.getItems());
+       
         clonedTableView.refresh();
 
         return clonedTableView;
