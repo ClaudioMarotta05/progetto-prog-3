@@ -99,7 +99,7 @@ public class MainSceneController implements Initializable{
    TableColumn<Tabella, String> TOT = new TableColumn<>("TOT");
    TableColumn<Tabella, String> Cnome = new TableColumn<>("nome");
    TableColumn<Tabella, String> Ccose = new TableColumn<>("cosa");
-   TableColumn<Tabella, String> Ccitta = new TableColumn<>("cittá");
+   TableColumn<Tabella, String> Ccitta = new TableColumn<>("citta");
    TableColumn<Tabella, String> Cfrutta = new TableColumn<>("frutta");
    Label label1 = new Label("Nome: ");
    Label label2 = new Label("Cose: ");
@@ -175,6 +175,19 @@ public class MainSceneController implements Initializable{
             CustomTables tableViewCloner = new CustomTables();
             TableView<Tabella> clonedTableView = tableViewCloner.cloneTableViewStructure(GG);
 
+            ObservableList<Tabella> originalData = GG.getItems();
+            System.out.println("Dimensione dei dati nella TableView originale: " + originalData.size());
+            for (Tabella row : originalData) {
+                System.out.println(row.getNome() + " - " + row.getCosa() + " - " + row.getCitta() + " - " + row.getFrutta());
+            }
+
+            ObservableList<Tabella> clonedData = clonedTableView.getItems();
+            System.out.println("Dimensione dei dati nella TableView clonata: " + clonedData.size());
+
+            for (Tabella row : clonedData) {
+                System.out.println(row.getNome() + " - " + row.getCosa() + " - " + row.getCitta() + " - " + row.getFrutta());
+            }
+
             clonedTableView.setId("TableView_" + numTab);
             clonedTableViews.add(clonedTableView);
             v1.getChildren().addAll(clonedTableView);
@@ -197,45 +210,7 @@ public class MainSceneController implements Initializable{
        
     }
 
-    @FXML
-    void aggParole(ActionEvent event)
-    {
-        String nuovaParola = "NuovaParola";
-
-        for (TableView<Tabella> clonedTableView : clonedTableViews) {
-
-            ObservableList<Tabella> FF = clonedTableView.getItems();
-
-            BuilderTabella builder = new BuilderTabella();
-            builder.setNome(nuovaParola);
-
-            Tabella row = builder.build();
-            
-            FF.add(row);
-            clonedTableView.setItems(FF); 
-
-
-            Tabella[] dataArray = FF.toArray(new Tabella[0]);
-
-        // Stampare tutte le parole presenti nell'array
-        for (Tabella tabella : dataArray) {
-            String nome = tabella.getNome(); // Ottieni il valore del campo 'nome'
-            String cosa = tabella.getCosa(); // Ottieni il valore del campo 'cosa'
-            String citta = tabella.getCitta(); // Ottieni il valore del campo 'citta'
-            String frutta = tabella.getFrutta(); // Ottieni il valore del campo 'frutta'
-
-            // Stampa le parole
-            System.out.println("Nome: " + nome);
-            System.out.println("Cosa: " + cosa);
-            System.out.println("Città: " + citta);
-            System.out.println("Frutta: " + frutta);
-        }
-
-        
-
-           
-          }
-    }
+   
 
 
 

@@ -14,6 +14,7 @@ public class Tabella {
         this.frutta = frutta;
     }
 
+   
     public int getTot() {
         return tot;
     }
