@@ -3,6 +3,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 
 import java.util.List;
+import java.util.Random;
 
 import BUILDER.BuilderTabella;
 import BUILDER.Tabella;
@@ -30,9 +31,30 @@ public class PlayerThreads {
                 while (running) {
                     try {
                         for (TableColumn<Tabella, ?> column : tableView.getColumns()) {
+
+                            
                             String columnHeaderText = column.getText();
-                            searchAndAddData(tableView, columnHeaderText, L);
+                            if ("tot".equalsIgnoreCase(columnHeaderText)) {
+                                continue; 
+                            }
+
+                           
+
+                            int numberOfColumns = tableView.getColumns().size();
+
+                            insertedWords++;
+                            if (insertedWords + 1 >= numberOfColumns) {
+                                stopThreads();
+                            }
+                            
+                            int randomDelay = new Random().nextInt(16) + 5;
+                            Thread.sleep(randomDelay * 1000);
+
+                             searchAndAddData(tableView, columnHeaderText, L);
+
                         }
+
+
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -91,12 +113,10 @@ public class PlayerThreads {
                 break;
                 }
 
-                int numberOfColumns = tableView.getColumns().size();
+                
 
-                insertedWords++;
-                if (insertedWords >= numberOfColumns) {
-                     stopThreads();
-                }
+
+                
 
              
                 tableView.refresh();

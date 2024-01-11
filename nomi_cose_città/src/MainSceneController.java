@@ -2,8 +2,8 @@
 
 
 import BUILDER.BuilderTabella;
-
-
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,10 +21,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -34,6 +37,8 @@ import BUILDER.Tabella;
 import PROTOTYPE.CustomTables;
 import STRATEGY.LetterStartSequentialFileSearchStrategy;
 import STRATEGY.SearchStrategy;
+import javafx.util.Duration;
+
 
 
 
@@ -76,6 +81,10 @@ public class MainSceneController implements Initializable{
     private MenuButton menu1;
 
 
+    @FXML
+    private Text TR;
+
+
 
     
 
@@ -108,6 +117,9 @@ public class MainSceneController implements Initializable{
    TextField Campo3 = new TextField();
    TextField Campo4 = new TextField();
 
+   private int countdown = 30;
+   private Timeline timeline;
+
    
 
     
@@ -130,10 +142,42 @@ public class MainSceneController implements Initializable{
         //Submit.setVisible(false);
         GG.setVisible(false);
         menu1.setVisible(false);
+        TR.setVisible(false);
+
+
+
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1.0), this::updateTimer));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+
+        // Imposta il testo iniziale del label
+        TR.setText(String.valueOf(countdown));
+
+
+        
+        
 
 
     }
 
+
+    
+
+
+    private void updateTimer(ActionEvent event) {
+        // Aggiorna il label e decrementa il conteggio
+        countdown--;
+        TR.setText(String.valueOf(countdown));
+
+        // Controlla se il timer è arrivato a 0
+        if (countdown == 0) {
+            timeline.stop();
+            // Puoi aggiungere azioni aggiuntive quando il timer raggiunge 0
+        }
+    }
+
+
+
+    
    
         
 
@@ -237,6 +281,8 @@ public class MainSceneController implements Initializable{
 
     @FXML
     void startGame(ActionEvent event) {
+
+        
 
         Start.setVisible(false);
         RL.setVisible(true);
@@ -530,10 +576,24 @@ void randomChar(ActionEvent event) {
     RL.setVisible(false);
     RandomCharButton = false; 
 
+    for (TableView<Tabella> tableView : clonedTableViews) {
+        ObservableList<Tabella> items = tableView.getItems();
+        for (Tabella row : items) {
+            row.setNome("");
+            row.setCosa("");
+            row.setCitta("");
+            row.setFrutta("");
+            row.setTot(0);  
+        }
+        tableView.refresh();
+    }
+
 
     PlayerThreads playerThreads = new PlayerThreads(clonedTableViews);
 
     playerThreads.startThreads(LetteraCasuale);
+
+    
 }
 
 
@@ -541,6 +601,10 @@ void randomChar(ActionEvent event) {
 
     @FXML
     void submit(ActionEvent event) {
+
+         TR.setVisible(true);
+
+         timeline.play();
 
 
         ObservableList<Tabella> TT = GG.getItems();
