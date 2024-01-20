@@ -6,7 +6,7 @@ public class Tabella {
     private String citta;
     private String frutta;
 
-    Tabella(int tot, String nome, String cosa, String citta, String frutta) {
+    public Tabella(int tot, String nome, String cosa, String citta, String frutta) {
         this.tot = tot;
         this.nome = nome;
         this.cosa = cosa;

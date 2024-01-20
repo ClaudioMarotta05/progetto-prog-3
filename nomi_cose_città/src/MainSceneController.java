@@ -92,7 +92,7 @@ public class MainSceneController implements Initializable{
     
 
    int cont = 0;
-   int punteggio = 0;
+   
    char LetteraCasuale;
    int numTab = 0;
    
@@ -117,9 +117,13 @@ public class MainSceneController implements Initializable{
    TextField Campo3 = new TextField();
    TextField Campo4 = new TextField();
 
-   private int countdown = 30;
+
+   private int countdown = 2;
+
+
    private Timeline timeline;
 
+   
    
 
     
@@ -163,19 +167,219 @@ public class MainSceneController implements Initializable{
     
 
 
-    private void updateTimer(ActionEvent event) {
-        // Aggiorna il label e decrementa il conteggio
+    @FXML
+       public void updateTimer(ActionEvent event) {
         countdown--;
         TR.setText(String.valueOf(countdown));
-
-        // Controlla se il timer è arrivato a 0
-        if (countdown == 0) {
+    
+        if(countdown==0){
             timeline.stop();
-            // Puoi aggiungere azioni aggiuntive quando il timer raggiunge 0
+           
+            PunteggioTabella();
+            
+           
+           
+
+
         }
     }
 
 
+
+    public void PunteggioTabella() {
+     int punteggioTotale = 0;
+     int punteggioNome =0;
+     int punteggioCosa =0;
+     int punteggioCitta=0;
+     int punteggioFrutta=0;
+    
+
+clonedTableViews.add(0,GG);
+
+
+   
+  for (int i = 0; i < clonedTableViews.size(); i++) {
+     TableView<Tabella> currentTableView = clonedTableViews.get(i);
+     ObservableList<Tabella> currentTableData = currentTableView.getItems();
+    Tabella lastRow1 = currentTableData.get(currentTableData.size() - 1);
+
+    System.out.println("TABELLA: " + i);
+    
+    
+
+     for (int j = 0; j < clonedTableViews.size() ; j++) {
+
+        if(i!=j){
+         
+        
+        
+         TableView<Tabella> nextTableView = clonedTableViews.get(j);
+         ObservableList<Tabella> nextTableData = nextTableView.getItems();
+         Tabella lastRow2 = nextTableData.get(nextTableData.size() - 1);
+
+         System.out.println("TABELLA: " + i +' '+ j);
+
+        
+       
+                
+
+        if (ColNome) {
+        
+        if(lastRow1.getNome().length() > 0 && lastRow2.getNome().length() > 0){
+
+         char primaLetteraInserita1 = lastRow1.getNome().charAt(0);
+         char primaLetteraInserita2 = lastRow2.getNome().charAt(0);
+                     SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+                     boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getNome(), "nome.txt");
+                     boolean wordExists2 = sequentialSearch.searchWord(lastRow2.getNome(), "nome.txt");
+
+         if (punteggioNome != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
+
+                         if(lastRow1.getNome().equals(lastRow2.getNome())){
+                                  punteggioNome = 5;
+                                    
+                                 }
+                        else {
+                               punteggioNome =10;
+                         
+                        }	
+        }
+    }	
+
+     }
+     System.out.println("p 1 " + lastRow1.getNome());
+     System.out.println("p 2 " + lastRow2.getNome());
+
+
+System.out.println("p nome" + punteggioNome);   
+
+         if (ColCosa) {
+               if(lastRow1.getCosa().length() > 0 && lastRow2.getCosa().length() > 0){
+
+         char primaLetteraInserita1 = lastRow1.getCosa().charAt(0);
+         char primaLetteraInserita2 = lastRow2.getCosa().charAt(0);
+                     SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+                     boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getCosa(), "cosa.txt");
+                     boolean wordExists2 = sequentialSearch.searchWord(lastRow2.getCosa(), "cosa.txt");
+
+         if (punteggioCosa != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
+
+                         if(lastRow1.getCosa().equals(lastRow2.getCosa())){
+                                  punteggioCosa = 5;
+                                    
+                                 }
+                        else {
+                               punteggioCosa = 10;
+                             
+                        }	
+          }
+       }	
+                     
+         }
+
+         System.out.println("p 1 " + lastRow1.getCosa());
+     System.out.println("p 2 " + lastRow2.getCosa());
+System.out.println("p cosa" + punteggioCosa);  
+
+         if (ColCitta) {
+               if(lastRow1.getCitta().length() > 0 && lastRow2.getCitta().length() > 0){
+
+         char primaLetteraInserita1 = lastRow1.getCitta().charAt(0);
+         char primaLetteraInserita2 = lastRow2.getCitta().charAt(0);
+                     SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+                     boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getCitta(), "citta.txt");
+                     boolean wordExists2 = sequentialSearch.searchWord(lastRow2.getCitta(), "citta.txt");
+
+         if (punteggioCitta != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
+
+                         if(lastRow1.getCitta().equals(lastRow2.getCitta())){
+                                  punteggioCitta = 5;
+                                    
+                                 }
+                        else {
+                               punteggioCitta = 10;
+                          
+                        }	
+          }
+       }	
+                     
+         }
+         System.out.println("p 1 " + lastRow1.getCitta());
+         System.out.println("p 2 " + lastRow2.getCitta());
+
+
+System.out.println("p citta" + punteggioCitta);   
+
+         if (ColFrutta) {
+               if(lastRow1.getFrutta().length() > 0 && lastRow2.getFrutta().length() > 0){
+
+         char primaLetteraInserita1 = lastRow1.getFrutta().charAt(0);
+         char primaLetteraInserita2 = lastRow2.getFrutta().charAt(0);
+                     SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+                     boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getFrutta(), "frutta.txt");
+                     boolean wordExists2 = sequentialSearch.searchWord(lastRow2.getFrutta(), "frutta.txt");
+
+         if (punteggioFrutta != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
+
+                         if(lastRow1.getFrutta().equals(lastRow2.getFrutta())){
+                                  punteggioFrutta = 5;
+                                    
+                                 }
+                        else {
+                               punteggioFrutta = 10;
+                              
+                        }	
+
+
+
+                        
+          }
+
+          
+       }	
+                     
+         }
+         System.out.println("p 1 " + lastRow1.getFrutta());
+         System.out.println("p 2 " + lastRow2.getFrutta());
+
+System.out.println("p Frutta" + punteggioFrutta);    
+        }
+                
+ }
+
+             punteggioTotale = 0; 
+
+             punteggioTotale += (punteggioNome + punteggioCosa + punteggioCitta + punteggioFrutta);
+             System.out.println("Punteggio TOT  " + punteggioTotale);  
+    
+     
+       lastRow1.setTot(punteggioTotale); 
+
+       punteggioNome =0;
+       punteggioCosa =0;
+       punteggioCitta=0;
+       punteggioFrutta=0;
+   
+       currentTableView.refresh();  
+
+   // TableView<Tabella> tabTemp = clonedTableViews.remove(0);
+   // clonedTableViews.add(tabTemp);
+    
+            } 
+         clonedTableViews.remove(GG); 
+}
+ 
+
+
+ 
+
+     
+
+ 
+ 
+     
+    
+         
 
     
    
@@ -567,11 +771,11 @@ public class MainSceneController implements Initializable{
     
 @FXML
 void randomChar(ActionEvent event) {
+    String alfabetoItaliano = "abcdefghilmnopqrstuvz";
     Random random = new Random();
-    int randomInt = random.nextInt(26);
-    char randomLetter = (char) ('A' + randomInt);
+    char randomLetter = alfabetoItaliano.charAt(random.nextInt(alfabetoItaliano.length()));
     this.LetteraCasuale = randomLetter;
-   
+
     Lettera.setText(String.valueOf(randomLetter));
     RL.setVisible(false);
     RandomCharButton = false; 
@@ -583,19 +787,14 @@ void randomChar(ActionEvent event) {
             row.setCosa("");
             row.setCitta("");
             row.setFrutta("");
-            row.setTot(0);  
+            row.setTot(0);
         }
         tableView.refresh();
     }
 
-
     PlayerThreads playerThreads = new PlayerThreads(clonedTableViews);
-
     playerThreads.startThreads(LetteraCasuale);
-
-    
 }
-
 
     
 
@@ -604,7 +803,7 @@ void randomChar(ActionEvent event) {
 
          TR.setVisible(true);
 
-         timeline.play();
+        
 
 
         ObservableList<Tabella> TT = GG.getItems();
@@ -615,76 +814,28 @@ void randomChar(ActionEvent event) {
         if (ColNome) {
              builder.setNome(Campo1.getText());
 
-            if (Campo1.getText().length() > 0) {
-
-                char primaLetteraInserita = Campo1.getText().charAt(0);
-
-                SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                boolean wordExists = sequentialSearch.searchWord(Campo1.getText(), "nome.txt");
-
-                if(wordExists && primaLetteraInserita == LetteraCasuale){
-                    punteggio += 10;
-                    builder.setTot(punteggio);
-                }
-                
-               
-
-            
-        }
     }
     
 
         if (ColCosa) {
              builder.setCosa(Campo2.getText());
-             if (Campo2.getText().length() > 0) {
-
-                char primaLetteraInserita = Campo2.getText().charAt(0);
-                
-                SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                boolean wordExists = sequentialSearch.searchWord(Campo2.getText(), "cosa.txt");
-
-                if(wordExists && primaLetteraInserita == LetteraCasuale){
-                    punteggio += 10;
-                    builder.setTot(punteggio);
-                }
-        }
+            
     }
     
     if (ColCitta) {
              builder.setCitta(Campo3.getText());
-             if (Campo3.getText().length() > 0) {
-
-                char primaLetteraInserita = Campo3.getText().charAt(0);
-                
-                SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                boolean wordExists = sequentialSearch.searchWord(Campo3.getText(), "citta.txt");
-
-                if(wordExists && primaLetteraInserita == LetteraCasuale){
-                    punteggio += 10;
-                    builder.setTot(punteggio);
-                }
-        }
+           
     }
     
     if (ColFrutta) {
              builder.setFrutta(Campo4.getText());
-             if (Campo4.getText().length() > 0) {
-
-                char primaLetteraInserita = Campo4.getText().charAt(0);
-                
-                SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                boolean wordExists = sequentialSearch.searchWord(Campo4.getText(), "frutta.txt");
-
-                if(wordExists && primaLetteraInserita == LetteraCasuale){
-                    punteggio += 10;
-                    builder.setTot(punteggio);
-                }
-
-
-        }
+           
     }
+    timeline.play();
 
-    punteggio = 0;
+    
+    
+    
 
         
 
@@ -693,7 +844,11 @@ void randomChar(ActionEvent event) {
         TT.add(row);
 
         GG.setItems(TT); 
+
+
         GG.refresh();
+
+        
 
         if(!RandomCharButton){
              RL.setVisible(true);

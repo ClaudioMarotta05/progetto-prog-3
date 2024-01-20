@@ -47,7 +47,7 @@ public class PlayerThreads {
                                 stopThreads();
                             }
                             
-                            int randomDelay = new Random().nextInt(16) + 5;
+                            int randomDelay = new Random().nextInt(5) + 2;
                             Thread.sleep(randomDelay * 1000);
 
                              searchAndAddData(tableView, columnHeaderText, L);

@@ -1,52 +1,110 @@
-
-New York City
-Parigi
-Londra
-Tokyo
-Roma
-Pechino
-Istanbul
-Bangkok
-Dubai
-Sydney
-Hong Kong
-Los Angeles
-SanFrancisco
-Rio 
-Città del Messico
-Barcellona
-Amsterdam
-Berlino
-Mosca
-Toronto
-Mumbai
-Buenos Aires
-Dubai
-San Paolo
-Las Vegas
-Shanghai
-Atene
-Madrid
-Singapore
-Dublino
-Praga
-Vienna
-Cairo
-Stoccolma
-Città del Capo
-Vienna
-Budapest
-Lisbona
-Copenhagen
-Miami
-Chicago
-Helsinki
-Varsavia
-Istanbul
-Delhi
-Kuala Lumpur
-Seul
-Santiago
-Oslo
-Milano
-
+amsterdam
+atene
+atlanta
+auckland
+austin
+bangkok
+barcellona
+berlino
+birmingham
+bogotà
+boston
+bratislava
+bruxelles
+bucarest
+buenos aires
+cairo
+calgary
+cancun
+chicago
+città del messico
+colonia
+copenaghen
+dallas
+detroit
+doha
+dubai
+dublino
+edimburgo
+francoforte
+ginevra
+goteborg
+helsinki
+honolulu
+houston
+istanbul
+jakarta
+jeddah
+jerusalem
+johannesburg
+kansas city
+kuala lumpur
+kyiv
+la paz
+lisbona
+liverpool
+londra
+los angeles
+madrid
+malaga
+manchester
+manila
+marsiglia
+medellin
+melbourne
+memphis
+miami
+milano
+minneapolis
+monaco
+monterrey
+montevideo
+montreal
+mosca
+mumbai
+monaco
+nairobi
+napoli
+nashville
+new delhi
+new orleans
+new york
+nizza
+oslo
+ottawa
+panama city
+parigi
+perth
+philadelphia
+porto
+praga
+pretoria
+quito
+rancho cucamonga
+reykjavik
+rio de janeiro
+riyadh
+roma
+san diego
+san francisco
+san jose
+san paolo
+santiago
+santo domingo
+seul
+shanghai
+singapore
+stoccolma
+sydney
+taipei
+tel aviv
+tijuana
+torino
+toronto
+toulouse
+vancouver
+varsavia
+vienna
+warsaw
+wellington
+zurigo
