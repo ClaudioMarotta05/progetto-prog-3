@@ -237,7 +237,6 @@ clonedTableViews.add(0,GG);
 
                          if(lastRow1.getNome().equals(lastRow2.getNome())){
                                   punteggioNome = 5;
-                                    
                                  }
                         else {
                                punteggioNome =10;
