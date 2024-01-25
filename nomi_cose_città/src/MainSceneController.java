@@ -6,15 +6,9 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn; 
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField; 
@@ -23,91 +17,52 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-
-import java.io.IOException;
-import java.net.URL;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.ResourceBundle;
-
-import BUILDER.Tabella;
-import PROTOTYPE.CustomTables;
-import STRATEGY.LetterStartSequentialFileSearchStrategy;
-import STRATEGY.SearchStrategy;
 import javafx.util.Duration;
 
 
 
 
-public class MainSceneController implements Initializable{
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-     @FXML
-     private TableView<Tabella> GG;
+
+import BUILDER.Tabella;
+import PROTOTYPE.CustomTables;
+import STRATEGY.LetterStartSequentialFileSearchStrategy;
+import STRATEGY.SearchStrategy;
 
 
- 
-    private List<TableView<Tabella>> clonedTableViews = new ArrayList<>();
 
-   
-    @FXML
+
+public class MainSceneController {
+
+    private TableView<Tabella> GG;
     private HBox Hbox;
-
-    @FXML
-    private VBox v1;
-
-
-    @FXML
-    private Label Lettera;
-
-    @FXML
-    private Button RL;
-
-    @FXML
-    private Button Submit;
    
-    @FXML
-    private Button Start;
-
-    @FXML
-    private Button Back;
-
-    @FXML
-    private Button parolaNuova;
-
-    @FXML
-    private MenuButton menu1;
-
-
-    @FXML
+    private Label Lettera;
+    private Button RL;
+   
+    private VBox v1;
     private Text TR;
-
-
-
+    private Button Start;
     
 
 
-    
+    boolean ColTot  = true;
+    boolean ColNome;
+    boolean ColCosa;
+    boolean ColCitta;
+    boolean ColFrutta;
+    boolean RandomCharButton = true;
+
+    private List<TableView<Tabella>> clonedTableViews = new ArrayList<>();
 
    int cont = 0;
    
    char LetteraCasuale;
    int numTab = 0;
    
-   
-   boolean ColTot  = true;
-   boolean ColNome;
-   boolean ColCosa;
-   boolean ColCitta;
-   boolean ColFrutta;
-   boolean RandomCharButton = true;
-   TableColumn<Tabella, String> TOT = new TableColumn<>("tot");
-   TableColumn<Tabella, String> Cnome = new TableColumn<>("nome");
-   TableColumn<Tabella, String> Ccose = new TableColumn<>("cosa");
-   TableColumn<Tabella, String> Ccitta = new TableColumn<>("citta");
-   TableColumn<Tabella, String> Cfrutta = new TableColumn<>("frutta");
    Label label1 = new Label("Nome: ");
    Label label2 = new Label("Cose: ");
    Label label3 = new Label("Cittá: ");
@@ -124,50 +79,160 @@ public class MainSceneController implements Initializable{
    private Timeline timeline;
 
    
-   
 
-    
-
-   
+public MainSceneController(TableView<Tabella> GG,boolean nome, boolean cose, boolean citta, boolean frutta, HBox Hbox, VBox v1, Label Lettera,Text TR,Button RL,Button Start) {
+    this.GG = GG;
+    this.ColNome = nome;
+    this.ColCosa = cose;
+    this.ColCitta = citta;
+    this.ColFrutta = frutta;
+    this.Hbox = Hbox;
+    this.v1 = v1;
+    this.Lettera = Lettera;
+    this.TR =TR;
+    this.RL = RL;
+    this.Start = Start;
  
-   
-     
-
+    
+}
    
     
+    public void startGame(ActionEvent event) {
 
+        
 
+       Start.setVisible(false);
+       RL.setVisible(true);
+       GG.setVisible(true);
+      
+
+       timeline = new Timeline(new KeyFrame(Duration.seconds(1.0), this::updateTimer));
+       timeline.setCycleCount(Timeline.INDEFINITE);
+
+       // Imposta il testo iniziale del label
+       TR.setText(String.valueOf(countdown));
+
+        TableColumn<Tabella, String> Cnome = new TableColumn<>("nome");
+        TableColumn<Tabella, String> Ccose = new TableColumn<>("cosa");
+        TableColumn<Tabella, String> Ccitta = new TableColumn<>("citta");
+        TableColumn<Tabella, String> Cfrutta = new TableColumn<>("frutta");
+        TableColumn<Tabella, String> TOT = new TableColumn<>("tot");
+
+        
+
+         System.out.println("Il valore di ColNome è: " + ColNome);
+          System.out.println("Il valore di ColCosa è: " + ColCosa);
+           System.out.println("Il valore di numero è: " + ColCitta);
+            System.out.println("Il valore di numero è: " + ColFrutta);
+
+       
+        double nuovaLarghezza = 0.0 ;
+
+        if(ColNome == true){
+            
+            
+            Cnome.setCellValueFactory(new PropertyValueFactory<Tabella, String>("nome"));
     
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        RL.setVisible(false);
-        //Submit.setVisible(false);
-        GG.setVisible(false);
-        menu1.setVisible(false);
-        TR.setVisible(false);
-
-
-
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1.0), this::updateTimer));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-
-        // Imposta il testo iniziale del label
-        TR.setText(String.valueOf(countdown));
-
-
+            GG.getColumns().add(Cnome);
+    
+            nuovaLarghezza += 100.0; 
+            
+            Hbox.getChildren().addAll(label1,Campo1);
+    
+            cont += 1;
+    
+        GG.setMinWidth(nuovaLarghezza);
+        GG.setPrefWidth(nuovaLarghezza);
+        GG.setMaxWidth(Double.MAX_VALUE);
+        Cnome.setMinWidth(nuovaLarghezza / cont);   
+            
+        }
+    
+            if(ColCosa == true){
+            
+             Ccose.setCellValueFactory(new PropertyValueFactory<Tabella, String>("cosa"));
+             GG.getColumns().add(Ccose);
+    
+           nuovaLarghezza += 100.0; 
+            Hbox.getChildren().addAll(label2,Campo2);
+    
+            cont += 1;
+    
+            GG.setMinWidth(nuovaLarghezza);
+            GG.setPrefWidth(nuovaLarghezza);
+            GG.setMaxWidth(Double.MAX_VALUE);
+            Ccose.setMinWidth(nuovaLarghezza / cont);
         
-        
+
+           
+        }
+    
+    
+        if(ColCitta==true){
+            
+            Ccitta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("citta"));
+             GG.getColumns().add(Ccitta);
+    
+         nuovaLarghezza += 100.0; 
+            Hbox.getChildren().addAll(label3,Campo3);
+
+             cont += 1;
+    
+              GG.setMinWidth(nuovaLarghezza);
+        GG.setPrefWidth(nuovaLarghezza);
+        GG.setMaxWidth(Double.MAX_VALUE);
+            Ccitta.setMinWidth(nuovaLarghezza / cont);
+
+           
+
+        }
+    
+    
+         if(ColFrutta==true){
+            
+             Cfrutta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("frutta"));
+             GG.getColumns().add(Cfrutta);
+    
+            nuovaLarghezza += 100.0; 
+            Hbox.getChildren().addAll(label4,Campo4);
+    
+            cont += 1;
+    
+            
+            GG.setMinWidth(nuovaLarghezza);
+        GG.setPrefWidth(nuovaLarghezza);
+        GG.setMaxWidth(Double.MAX_VALUE);
+            Cfrutta.setMinWidth(nuovaLarghezza / cont);
+
+       
+
+           
+        }
 
 
+          if(ColTot==true){
+           
+             TOT.setCellValueFactory(new PropertyValueFactory<Tabella, String>("tot"));
+             GG.getColumns().add(TOT);
+    
+            nuovaLarghezza += 100.0; 
+          
+            cont += 1;
+    
+            
+            GG.setMinWidth(nuovaLarghezza);
+            GG.setPrefWidth(nuovaLarghezza);
+            GG.setMaxWidth(Double.MAX_VALUE);
+            TOT.setMinWidth(nuovaLarghezza / cont);
+
+        }
+    
+            
     }
 
 
+
     
-
-
-    @FXML
        public void updateTimer(ActionEvent event) {
         countdown--;
         TR.setText(String.valueOf(countdown));
@@ -176,9 +241,6 @@ public class MainSceneController implements Initializable{
             timeline.stop();
            
             PunteggioTabella();
-            
-           
-           
 
 
         }
@@ -187,6 +249,7 @@ public class MainSceneController implements Initializable{
 
 
     public void PunteggioTabella() {
+
      int punteggioTotale = 0;
      int punteggioNome =0;
      int punteggioCosa =0;
@@ -219,88 +282,151 @@ clonedTableViews.add(0,GG);
 
          System.out.println("TABELLA: " + i +' '+ j);
 
+
+
         
        
                 
 
         if (ColNome) {
-        
-        if(lastRow1.getNome().length() > 0 && lastRow2.getNome().length() > 0){
 
-         char primaLetteraInserita1 = lastRow1.getNome().charAt(0);
-         char primaLetteraInserita2 = lastRow2.getNome().charAt(0);
+           
+        if(lastRow1.getNome().length() > 0 && lastRow2.getNome().length() == 0){
+
+                char primaLetteraInserita1 = lastRow1.getNome().charAt(0);
+               
                      SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
                      boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getNome(), "nome.txt");
-                     boolean wordExists2 = sequentialSearch.searchWord(lastRow2.getNome(), "nome.txt");
+                     if (wordExists1 && primaLetteraInserita1 == LetteraCasuale)
+                     {
+                        punteggioNome =10;
+                        cont++;
 
-         if (punteggioNome != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
+                     }
+                    
+        }
 
-                         if(lastRow1.getNome().equals(lastRow2.getNome())){
+        if(lastRow1.getNome().length() > 0 && lastRow2.getNome().length() > 0 ){
+
+                 char primaLetteraInserita1 = lastRow1.getNome().charAt(0);
+                 char primaLetteraInserita2 = lastRow2.getNome().charAt(0);
+                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+                 boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getNome(), "nome.txt");
+                 boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getNome(), "nome.txt");
+                
+    
+        
+
+                if (punteggioNome != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
+
+                        if(lastRow1.getNome().equals(lastRow2.getNome())){
                                   punteggioNome = 5;
-                                 }
+                        }
                         else {
                                punteggioNome =10;
                          
                         }	
-        }
-    }	
+                }
+    
 
      }
+
+    }
      System.out.println("p 1 " + lastRow1.getNome());
      System.out.println("p 2 " + lastRow2.getNome());
-
+     
+    
 
 System.out.println("p nome" + punteggioNome);   
 
          if (ColCosa) {
-               if(lastRow1.getCosa().length() > 0 && lastRow2.getCosa().length() > 0){
+            if(lastRow1.getCosa().length() > 0 && lastRow2.getCosa().length() == 0){
 
-         char primaLetteraInserita1 = lastRow1.getCosa().charAt(0);
-         char primaLetteraInserita2 = lastRow2.getCosa().charAt(0);
+                char primaLetteraInserita1 = lastRow1.getCosa().charAt(0);
+               
                      SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
                      boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getCosa(), "cosa.txt");
-                     boolean wordExists2 = sequentialSearch.searchWord(lastRow2.getCosa(), "cosa.txt");
+                     if (wordExists1 && primaLetteraInserita1 == LetteraCasuale)
+                     {
+                        punteggioCosa =10;
+                        
+                     }
+                    
+        }
 
-         if (punteggioCosa != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
+        if(lastRow1.getCosa().length() > 0 && lastRow2.getCosa().length() > 0 ){
 
-                         if(lastRow1.getCosa().equals(lastRow2.getCosa())){
+                 char primaLetteraInserita1 = lastRow1.getCosa().charAt(0);
+                 char primaLetteraInserita2 = lastRow2.getCosa().charAt(0);
+                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+                 boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getCosa(), "cosa.txt");
+                 boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getCosa(), "cosa.txt");
+                
+    
+        
+
+                if (punteggioCosa != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
+
+                        if(lastRow1.getCosa().equals(lastRow2.getCosa())){
                                   punteggioCosa = 5;
-                                    
-                                 }
+                        }
                         else {
-                               punteggioCosa = 10;
-                             
+                               punteggioCosa =10;
+                         
                         }	
-          }
-       }	
+                }
+    
+
+     }
                      
          }
-
          System.out.println("p 1 " + lastRow1.getCosa());
-     System.out.println("p 2 " + lastRow2.getCosa());
-System.out.println("p cosa" + punteggioCosa);  
+         System.out.println("p 2 " + lastRow2.getCosa());
+
+
+System.out.println("p cosa" + punteggioCosa);
+
+
 
          if (ColCitta) {
-               if(lastRow1.getCitta().length() > 0 && lastRow2.getCitta().length() > 0){
+            if(lastRow1.getCitta().length() > 0 && lastRow2.getCitta().length() == 0){
 
-         char primaLetteraInserita1 = lastRow1.getCitta().charAt(0);
-         char primaLetteraInserita2 = lastRow2.getCitta().charAt(0);
+                char primaLetteraInserita1 = lastRow1.getCitta().charAt(0);
+               
                      SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
                      boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getCitta(), "citta.txt");
-                     boolean wordExists2 = sequentialSearch.searchWord(lastRow2.getCitta(), "citta.txt");
+                     if (wordExists1 && primaLetteraInserita1 == LetteraCasuale)
+                     {
+                        punteggioCitta =10;
+                        
+                     }
+                    
+        }
 
-         if (punteggioCitta != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
+        if(lastRow1.getCitta().length() > 0 && lastRow2.getCitta().length() > 0 ){
 
-                         if(lastRow1.getCitta().equals(lastRow2.getCitta())){
+                 char primaLetteraInserita1 = lastRow1.getCitta().charAt(0);
+                 char primaLetteraInserita2 = lastRow2.getCitta().charAt(0);
+                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+                 boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getCitta(), "citta.txt");
+                 boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getCitta(), "citta.txt");
+                
+    
+        
+
+                if (punteggioCitta != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
+
+                        if(lastRow1.getCitta().equals(lastRow2.getCitta())){
                                   punteggioCitta = 5;
-                                    
-                                 }
+                        }
                         else {
-                               punteggioCitta = 10;
-                          
+                               punteggioCitta =10;
+                         
                         }	
-          }
-       }	
+                }
+    
+
+     }
                      
          }
          System.out.println("p 1 " + lastRow1.getCitta());
@@ -310,32 +436,44 @@ System.out.println("p cosa" + punteggioCosa);
 System.out.println("p citta" + punteggioCitta);   
 
          if (ColFrutta) {
-               if(lastRow1.getFrutta().length() > 0 && lastRow2.getFrutta().length() > 0){
+            if(lastRow1.getFrutta().length() > 0 && lastRow2.getFrutta().length() == 0){
 
-         char primaLetteraInserita1 = lastRow1.getFrutta().charAt(0);
-         char primaLetteraInserita2 = lastRow2.getFrutta().charAt(0);
+                char primaLetteraInserita1 = lastRow1.getFrutta().charAt(0);
+               
                      SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
                      boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getFrutta(), "frutta.txt");
-                     boolean wordExists2 = sequentialSearch.searchWord(lastRow2.getFrutta(), "frutta.txt");
-
-         if (punteggioFrutta != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
-
-                         if(lastRow1.getFrutta().equals(lastRow2.getFrutta())){
-                                  punteggioFrutta = 5;
-                                    
-                                 }
-                        else {
-                               punteggioFrutta = 10;
-                              
-                        }	
-
-
-
+                     if (wordExists1 && primaLetteraInserita1 == LetteraCasuale)
+                     {
+                        punteggioFrutta =10;
                         
-          }
+                     }
+                    
+        }
 
-          
-       }	
+        if(lastRow1.getFrutta().length() > 0 && lastRow2.getFrutta().length() > 0 ){
+
+                 char primaLetteraInserita1 = lastRow1.getFrutta().charAt(0);
+                 char primaLetteraInserita2 = lastRow2.getFrutta().charAt(0);
+                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+                 boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getFrutta(), "frutta.txt");
+                 boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getFrutta(), "frutta.txt");
+                
+    
+        
+
+                if (punteggioFrutta != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
+
+                        if(lastRow1.getFrutta().equals(lastRow2.getFrutta())){
+                                  punteggioFrutta = 5;
+                        }
+                        else {
+                               punteggioFrutta =10;
+                         
+                        }	
+                }
+    
+
+     }
                      
          }
          System.out.println("p 1 " + lastRow1.getFrutta());
@@ -369,31 +507,8 @@ System.out.println("p Frutta" + punteggioFrutta);
 }
  
 
-
- 
-
-     
-
- 
- 
-     
     
-         
-
-    
-   
-        
-
-    public void setColValues(boolean ColNome, boolean ColCosa, boolean ColCitta, boolean ColFrutta) {
-        this.ColNome = ColNome;
-        this.ColCosa = ColCosa;
-        this.ColCitta = ColCitta;
-        this.ColFrutta = ColFrutta;
-    }
-
-
-    @FXML
-    void addTables(ActionEvent event)
+    public void addTables(ActionEvent event)
     {
          double nuovaLarghezza = 0.0;
          int numCol = 0;
@@ -447,165 +562,26 @@ System.out.println("p Frutta" + punteggioFrutta);
         }
 
        
-
-
-        
-
-
-       
        
     }
 
-   
 
-
-
-        
-    @FXML
-    void backToSettings(ActionEvent event)
+   public void backToSettings(ActionEvent event)
     {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Scene2.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            
-        }
+        Scene2View scene2View = new Scene2View();
+        scene2View.showView();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
-
-    
-
-
-
-    @FXML
-    void startGame(ActionEvent event) {
-
-        
-
-        Start.setVisible(false);
-        RL.setVisible(true);
-        GG.setVisible(true);
-        menu1.setVisible(true);
-
-         System.out.println("Il valore di numero è: " + ColNome);
-          System.out.println("Il valore di numero è: " + ColCosa);
-           System.out.println("Il valore di numero è: " + ColCitta);
-            System.out.println("Il valore di numero è: " + ColFrutta);
-
-       
-        double nuovaLarghezza = 0.0 ;
-
-        if(ColNome == true){
-            
-            Cnome.setCellValueFactory(new PropertyValueFactory<Tabella, String>("nome"));
-    
-            GG.getColumns().add(Cnome);
-    
-            nuovaLarghezza += 100.0; 
-            
-            Hbox.getChildren().addAll(label1,Campo1);
-    
-            cont += 1;
-    
-        GG.setMinWidth(nuovaLarghezza);
-        GG.setPrefWidth(nuovaLarghezza);
-        GG.setMaxWidth(Double.MAX_VALUE);
-        Cnome.setMinWidth(nuovaLarghezza / cont); 
-       
-            
-    
-            
-              
-            
-        }
-    
-            if(ColCosa == true){
-             Ccose.setCellValueFactory(new PropertyValueFactory<Tabella, String>("cosa"));
-             GG.getColumns().add(Ccose);
-    
-           nuovaLarghezza += 100.0; 
-            Hbox.getChildren().addAll(label2,Campo2);
-    
-            cont += 1;
-    
-            GG.setMinWidth(nuovaLarghezza);
-            GG.setPrefWidth(nuovaLarghezza);
-            GG.setMaxWidth(Double.MAX_VALUE);
-            Ccose.setMinWidth(nuovaLarghezza / cont);
-        
-
-           
-        }
-    
-    
-        if(ColCitta==true){
-            Ccitta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("citta"));
-             GG.getColumns().add(Ccitta);
-    
-         nuovaLarghezza += 100.0; 
-            Hbox.getChildren().addAll(label3,Campo3);
-
-             cont += 1;
-    
-              GG.setMinWidth(nuovaLarghezza);
-        GG.setPrefWidth(nuovaLarghezza);
-        GG.setMaxWidth(Double.MAX_VALUE);
-            Ccitta.setMinWidth(nuovaLarghezza / cont);
-
-           
-
-        }
-    
-    
-         if(ColFrutta==true){
-             Cfrutta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("frutta"));
-             GG.getColumns().add(Cfrutta);
-    
-            nuovaLarghezza += 100.0; 
-            Hbox.getChildren().addAll(label4,Campo4);
-    
-            cont += 1;
-    
-            
-            GG.setMinWidth(nuovaLarghezza);
-        GG.setPrefWidth(nuovaLarghezza);
-        GG.setMaxWidth(Double.MAX_VALUE);
-            Cfrutta.setMinWidth(nuovaLarghezza / cont);
-
-       
-
-           
-        }
-
-
-          if(ColTot==true){
-             TOT.setCellValueFactory(new PropertyValueFactory<Tabella, String>("tot"));
-             GG.getColumns().add(TOT);
-    
-            nuovaLarghezza += 100.0; 
-          
-            cont += 1;
-    
-            
-            GG.setMinWidth(nuovaLarghezza);
-            GG.setPrefWidth(nuovaLarghezza);
-            GG.setMaxWidth(Double.MAX_VALUE);
-            TOT.setMinWidth(nuovaLarghezza / cont);
-
-        }
-    
-            
-    }
-
+/* 
     @FXML
     void colonna1(ActionEvent event) {
     double nuovaLarghezza;
+    TableColumn<Tabella, String> Cnome = new TableColumn<>("nome");
     if(ColNome == false){
+
+        
         
         Cnome.setCellValueFactory(new PropertyValueFactory<Tabella, String>("nome"));
         GG.getColumns().add(Cnome);
@@ -648,6 +624,7 @@ System.out.println("p Frutta" + punteggioFrutta);
     void colonna2(ActionEvent event) {
 
     double nuovaLarghezza;
+    TableColumn<Tabella, String> Ccose = new TableColumn<>("cosa");
     if(ColCosa == false){
          Ccose.setCellValueFactory(new PropertyValueFactory<Tabella, String>("cosa"));
          GG.getColumns().add(Ccose);
@@ -690,6 +667,7 @@ System.out.println("p Frutta" + punteggioFrutta);
     @FXML
     void colonna3(ActionEvent event) {
     double nuovaLarghezza;
+    TableColumn<Tabella, String> Ccitta = new TableColumn<>("citta");
     if(ColCitta==false){
         Ccitta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("citta"));
          GG.getColumns().add(Ccitta);
@@ -735,6 +713,7 @@ System.out.println("p Frutta" + punteggioFrutta);
     @FXML
     void colonna4(ActionEvent event) {
     double nuovaLarghezza;
+    TableColumn<Tabella, String> Cfrutta = new TableColumn<>("frutta");
     if(ColFrutta==false){
          Cfrutta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("frutta"));
          GG.getColumns().add(Cfrutta);
@@ -767,9 +746,9 @@ System.out.println("p Frutta" + punteggioFrutta);
     }
 }
     
-    
-@FXML
-void randomChar(ActionEvent event) {
+*/
+
+public void randomChar(ActionEvent event) {
     String alfabetoItaliano = "abcdefghilmnopqrstuvz";
     Random random = new Random();
     char randomLetter = alfabetoItaliano.charAt(random.nextInt(alfabetoItaliano.length()));
@@ -797,8 +776,8 @@ void randomChar(ActionEvent event) {
 
     
 
-    @FXML
-    void submit(ActionEvent event) {
+    
+    public void submit(ActionEvent event) {
 
          TR.setVisible(true);
 
@@ -853,6 +832,17 @@ void randomChar(ActionEvent event) {
              RL.setVisible(true);
         }
         
+    }
+
+
+
+    public void terminaPartita(ActionEvent event){
+        FinalScene View = new FinalScene();
+        View.showView();
+
+      
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
 }

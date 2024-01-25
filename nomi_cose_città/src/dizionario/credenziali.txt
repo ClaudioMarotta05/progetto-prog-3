@@ -1,0 +1,23 @@
+admin
+pass
+
+francesco
+helloworld
+francescofossari@outlook.com
+Genere: Maschio
+
+Marco
+fio
+marcopisacane
+Genere: Maschio
+
+Simone
+Palladino
+simoPallaDinosauro@gmail.com
+Genere: Altro
+
+
+gio
+rana
+rana@gmail.com
+Genere: Maschio
