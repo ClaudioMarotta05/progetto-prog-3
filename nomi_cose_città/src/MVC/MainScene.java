@@ -1,3 +1,4 @@
+package MVC;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,9 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-
-
 import BUILDER.Tabella;
 
 

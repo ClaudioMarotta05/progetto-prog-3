@@ -1,3 +1,4 @@
+package MVC;
 
 
 
@@ -25,7 +26,6 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 
 import BUILDER.Tabella;
 import PROTOTYPE.CustomTables;

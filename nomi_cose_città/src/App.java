@@ -2,6 +2,8 @@
 
 
 
+
+import MVC.SceneController;
 import javafx.application.Application;
 
 import javafx.geometry.Insets;

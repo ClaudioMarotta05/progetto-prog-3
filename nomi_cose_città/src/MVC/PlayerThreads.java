@@ -1,3 +1,4 @@
+package MVC;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;

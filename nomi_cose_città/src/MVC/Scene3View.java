@@ -1,3 +1,5 @@
+package MVC;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

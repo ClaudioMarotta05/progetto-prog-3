@@ -1,3 +1,4 @@
+package MVC;
 
 import STRATEGY.LetterStartSequentialFileSearchStrategy;
 import STRATEGY.SearchStrategy;

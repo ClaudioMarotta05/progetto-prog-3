@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "MVC.App",
+            "projectName": "progetto-prog-3_38f401f7"
+        },
+        {
+            "type": "java",
             "name": "CustomTables",
             "request": "launch",
             "mainClass": "CustomTables",
