@@ -13,6 +13,8 @@ public class SceneController {
     private TextField username;
     private PasswordField password;
 
+    
+
     public SceneController(TextField username, PasswordField password) {
         this.username = username;
         this.password = password;
@@ -20,13 +22,25 @@ public class SceneController {
 
     
     public void handleLoginAction(ActionEvent event) {
+
+        
+
+
         if (!username.getText().isEmpty() && !password.getText().isEmpty()) {
             SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
             boolean wordExists1 = sequentialSearch.searchWord(username.getText(),"credenziali.txt");
             boolean wordExists2 = sequentialSearch.searchWord(password.getText(), "credenziali.txt");
             if(wordExists1 && wordExists2){
 
-                Scene2View scene2View = new Scene2View();
+                
+                
+                model1 model = new model1();
+                model.setUsername(username.getText());
+                model.setPassword(password.getText());
+
+                
+
+                Scene2View scene2View = new Scene2View(model);
                 scene2View.showView();
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 currentStage.close();
@@ -50,6 +64,9 @@ public class SceneController {
         
        
     }
+
+
+    
 
 
 }

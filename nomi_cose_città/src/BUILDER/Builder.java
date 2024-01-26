@@ -1,5 +1,7 @@
 package BUILDER;
 
+import MVC.Tabella;
+
 public interface Builder {
     public Builder setTot(int tot);
     public Builder setNome(String nome);

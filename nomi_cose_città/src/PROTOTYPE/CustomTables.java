@@ -1,9 +1,9 @@
 package PROTOTYPE;
 
+import MVC.Tabella;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import BUILDER.Tabella;
 public class CustomTables implements prototype{
 
     public TableView<Tabella> cloneTableViewStructure(TableView<Tabella> originalTableView) {

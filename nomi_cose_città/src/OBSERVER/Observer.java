@@ -1,6 +1,6 @@
 package OBSERVER;
 
-import BUILDER.Tabella;
+import MVC.Tabella;
 import javafx.scene.control.TableView;
 
 

@@ -1,11 +1,9 @@
 package OBSERVER;
 
-import BUILDER.Tabella;
-
 import java.util.ArrayList;
 import java.util.List;
 
-
+import MVC.Tabella;
 import javafx.scene.control.TableView;
 
 

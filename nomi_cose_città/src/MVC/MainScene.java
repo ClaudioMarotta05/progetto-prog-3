@@ -15,7 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import BUILDER.Tabella;
 
 
 
@@ -32,19 +31,20 @@ public class MainScene extends AnchorPane{
     private Button newButton;
     private VBox v1;
     private Text TR;
+    private Label Nominativo;
 
     private boolean nome;
     private boolean cose;
     private boolean citta;
     private boolean frutta;
+    private String Username;
 
+    model2 model;
     MainSceneController controller;
 
-    public MainScene(boolean nome, boolean cose, boolean citta, boolean frutta) {
-        this.nome = nome;
-        this.cose = cose;
-        this.citta = citta;
-        this.frutta = frutta;
+    public MainScene(model2 model) {
+        this.model=model;
+
         initialize();
 
     }
@@ -58,6 +58,13 @@ public class MainScene extends AnchorPane{
 
 
     private void initialize() {
+
+        Username = model.getPartecipante();
+
+        Nominativo = new Label(Username);
+        Nominativo.setLayoutX(66);
+        Nominativo.setLayoutY(80);
+
 
 
         GG = new TableView<Tabella>();
@@ -112,7 +119,12 @@ public class MainScene extends AnchorPane{
         Start.setLayoutY(268);
         Start.setVisible(true);
 
-        controller = new MainSceneController(GG,nome,cose,citta,frutta,Hbox,v1,Lettera,TR,RL,Start);
+        nome = model.getCat1();
+        cose = model.getCat2();
+        citta = model.getCat3();
+        frutta = model.getCat4();
+
+        controller = new MainSceneController(GG,nome,cose,citta,frutta,Hbox,v1,Lettera,TR,RL,Start,Username);
         
 
         /* 
@@ -154,7 +166,7 @@ public class MainScene extends AnchorPane{
         RL.setOnAction(controller::randomChar);
         Termina.setOnAction(controller::terminaPartita);
 
-        getChildren().addAll(GG, Hbox, Start, Lettera, RL, Submit, Back, newButton, v1, TR, Termina);
+        getChildren().addAll(GG, Hbox, Start, Lettera, RL, Submit, Back, newButton, v1, TR, Termina, Nominativo);
 
     }
     /* 

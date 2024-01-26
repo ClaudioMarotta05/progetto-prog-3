@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import BUILDER.Tabella;
 import PROTOTYPE.CustomTables;
 import STRATEGY.LetterStartSequentialFileSearchStrategy;
 import STRATEGY.SearchStrategy;
@@ -46,6 +45,7 @@ public class MainSceneController {
     private VBox v1;
     private Text TR;
     private Button Start;
+    private String Nominativo;
     
 
 
@@ -59,6 +59,7 @@ public class MainSceneController {
     private List<TableView<Tabella>> clonedTableViews = new ArrayList<>();
 
    int cont = 0;
+   int punteggioAmministratore = 0;
    
    char LetteraCasuale;
    int numTab = 0;
@@ -80,7 +81,7 @@ public class MainSceneController {
 
    
 
-public MainSceneController(TableView<Tabella> GG,boolean nome, boolean cose, boolean citta, boolean frutta, HBox Hbox, VBox v1, Label Lettera,Text TR,Button RL,Button Start) {
+public MainSceneController(TableView<Tabella> GG,boolean nome, boolean cose, boolean citta, boolean frutta, HBox Hbox, VBox v1, Label Lettera,Text TR,Button RL,Button Start, String Nominativo) {
     this.GG = GG;
     this.ColNome = nome;
     this.ColCosa = cose;
@@ -92,6 +93,7 @@ public MainSceneController(TableView<Tabella> GG,boolean nome, boolean cose, boo
     this.TR =TR;
     this.RL = RL;
     this.Start = Start;
+    this.Nominativo = Nominativo;
  
     
 }
@@ -241,6 +243,8 @@ public MainSceneController(TableView<Tabella> GG,boolean nome, boolean cose, boo
             timeline.stop();
            
             PunteggioTabella();
+
+            countdown = 10;
 
 
         }
@@ -492,6 +496,11 @@ System.out.println("p Frutta" + punteggioFrutta);
      
        lastRow1.setTot(punteggioTotale); 
 
+       if(i==0){
+        punteggioAmministratore += punteggioTotale;
+        System.out.println("Punteggio Amministratore " + punteggioAmministratore);  
+       }
+
        punteggioNome =0;
        punteggioCosa =0;
        punteggioCitta=0;
@@ -567,11 +576,12 @@ System.out.println("p Frutta" + punteggioFrutta);
 
 
    public void backToSettings(ActionEvent event)
-    {
+    {/* 
         Scene2View scene2View = new Scene2View();
         scene2View.showView();
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.close();
+         */
     }
 
 /* 
@@ -837,7 +847,7 @@ public void randomChar(ActionEvent event) {
 
 
     public void terminaPartita(ActionEvent event){
-        FinalScene View = new FinalScene();
+        FinalScene View = new FinalScene(Nominativo);
         View.showView();
 
       

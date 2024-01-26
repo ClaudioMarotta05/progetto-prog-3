@@ -17,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 public class App extends Application {
+
+    
     @Override
     public void start(Stage primaryStage) {
        
@@ -41,6 +43,8 @@ public class App extends Application {
         AnchorPane.setLeftAnchor(vBox, 279.0);
         root.getChildren().add(vBox);
 
+       
+
         // Create the scene
         Scene scene = new Scene(root, 785, 570);
         primaryStage.setScene(scene);
@@ -54,6 +58,8 @@ public class App extends Application {
         primaryStage.show();
   
     }
+
+    
  
 
     

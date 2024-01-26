@@ -5,10 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
+//import javafx.scene.Node;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+//import javafx.stage.Stage;
 
 
 public class Scene3controller {
@@ -37,16 +37,23 @@ public class Scene3controller {
 
     
     public void signup(ActionEvent event) {
-        // Verifica che i campi di testo non siano vuoti
+       
         if (!username.getText().isEmpty() && !password.getText().isEmpty() && !mail.getText().isEmpty()) {
-            // Scrivi le credenziali su un file nella cartella "dizionario"
+            
             writeToFile("nomi_cose_città/src/dizionario/credenziali.txt");}
 
-            Scene2View scene2View = new Scene2View();
+            model3 model = new model3();
+            model.setName(username.getText());
+            model.setPass(password.getText());
+            model.setMail(mail.getText());
+
+
+            /* 
+            Scene2View scene2View = new Scene2View(model);
             scene2View.showView();
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.close();
-
+ */
 
     }
 

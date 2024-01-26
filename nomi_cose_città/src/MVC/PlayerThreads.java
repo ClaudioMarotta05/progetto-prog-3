@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Random;
 
 import BUILDER.BuilderTabella;
-import BUILDER.Tabella;
 import STRATEGY.LetterStartSequentialFileSearchStrategy;
 import STRATEGY.SearchStrategy;
 import javafx.scene.control.TableView;

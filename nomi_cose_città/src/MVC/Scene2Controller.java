@@ -14,14 +14,15 @@ public class Scene2Controller {
     private boolean cose;
     private boolean citta;
     private boolean frutta;
+    private String username;
 
-   
+
+    public Scene2Controller(String username){
+        this.username = username;
+    }
     
 
-
-    
    
-
 
     public void setCat1(ActionEvent event) {
         this.nome = !this.nome;
@@ -68,7 +69,17 @@ public class Scene2Controller {
 
     
     public void playGame(ActionEvent event) {
-        MainScene Scena = new MainScene(nome,cose,citta,frutta);
+
+        model2 model = new model2();
+        model.setCat1(nome);
+        model.setCat2(cose);
+        model.setCat3(citta);
+        model.setCat4(frutta);
+        model.setPartecipante(username);
+
+
+        
+        MainScene Scena = new MainScene(model);
         Scena.showView();
 
          Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

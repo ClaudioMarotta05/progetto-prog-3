@@ -1,4 +1,4 @@
-package BUILDER;
+package MVC;
 public class Tabella {
     private int tot;
     private String nome;
