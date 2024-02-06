@@ -1,14 +1,19 @@
 package MVC;
 
+import BUILDER.Tabella;
+import COMMAND.Back2Command;
+import COMMAND.Command;
+import COMMAND.RLCommand;
+import COMMAND.StartCommand;
+import COMMAND.SubmitCommand;
+import COMMAND.TerminaCommand;
+import OBSERVER.Observable;
+import OBSERVER.Observer;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-//import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
-//import javafx.scene.control.MenuButton;
- 
 import javafx.scene.control.TableView;
-
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,54 +21,39 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
-
-public class MainScene extends AnchorPane{
+public class MainScene extends AnchorPane implements Observer{
     private TableView<Tabella> GG;
     private HBox Hbox;
     private Button Start;
-    //private MenuButton menu1;
     private Label Lettera;
     private Button RL;
     private Button Submit;
-    private Button Back;
     private Button Termina;
-    private Button newButton;
     private VBox v1;
     private Text TR;
     private Label Nominativo;
+    private Button Back2;
+    
 
-    private boolean nome;
-    private boolean cose;
-    private boolean citta;
-    private boolean frutta;
-    private String Username;
 
-    model2 model;
+    model1 model;
     MainSceneController controller;
 
-    public MainScene(model2 model) {
+    public MainScene(model1 model) {
         this.model=model;
-
+        this.model.addObserver(this);
         initialize();
 
     }
 
-    
-
-    public MainScene() {
-       initialize();
-    }
-
-
-
     private void initialize() {
-
-        Username = model.getPartecipante();
-
-        Nominativo = new Label(Username);
+        Nominativo = new Label(model.getUsername());
         Nominativo.setLayoutX(66);
         Nominativo.setLayoutY(80);
+
+        Back2 = new Button("<-");
+        Back2.setLayoutX(0.0);
+        Back2.setLayoutY(0.0);
 
 
 
@@ -119,73 +109,49 @@ public class MainScene extends AnchorPane{
         Start.setLayoutY(268);
         Start.setVisible(true);
 
-        nome = model.getCat1();
-        cose = model.getCat2();
-        citta = model.getCat3();
-        frutta = model.getCat4();
-
-        controller = new MainSceneController(GG,nome,cose,citta,frutta,Hbox,v1,Lettera,TR,RL,Start,Username);
+        controller = new MainSceneController(GG,Hbox,v1,Lettera,TR,RL,Start,model);
         
-
-        /* 
-
-        menu1 = new MenuButton("Menu");
-        menu1.setLayoutX(597);
-        menu1.setLayoutY(23);
-        menu1.setPrefHeight(35);
-        menu1.setPrefWidth(63);
-        menu1.setVisible(false);
-        configureMenuItems(menu1);
-
-       */
-
-        
-
         Submit = new Button("Submit");
         Submit.setLayoutX(302);
         Submit.setLayoutY(523);
+    
         
+        Start.setOnAction(event -> {Command startcommand = new StartCommand(controller, event);
+        startcommand.execute(); 
+        });
 
-        Back = new Button("<-");
-        Back.setLayoutX(-1);
-        Back.setLayoutY(-2);
-        
+        Submit.setOnAction(event -> {Command submitcommand = new SubmitCommand(controller, event);
+            submitcommand.execute(); 
+            });
+       
+        RL.setOnAction(event -> {Command rlcommand = new RLCommand(controller, event);
+            rlcommand.execute(); 
+            });
+            
+        Termina.setOnAction(event -> {Command terminacommand = new TerminaCommand(controller, event);
+            terminacommand.execute(); 
+            });
 
-        newButton = new Button("NEW");
-        newButton.setLayoutX(102);
-        newButton.setLayoutY(28);
+        Back2.setOnAction(event -> {Command back2command = new Back2Command(controller, event);
+        back2command.execute(); 
+        });
 
 
-        
-
-        
-        Start.setOnAction(controller::startGame);
-        Submit.setOnAction(controller::submit);
-        Back.setOnAction(controller::backToSettings);
-        newButton.setOnAction(controller::addTables);
-        RL.setOnAction(controller::randomChar);
-        Termina.setOnAction(controller::terminaPartita);
-
-        getChildren().addAll(GG, Hbox, Start, Lettera, RL, Submit, Back, newButton, v1, TR, Termina, Nominativo);
+        getChildren().addAll(GG, Hbox, Start, Lettera, RL, Submit, v1, TR, Termina, Nominativo,Back2);
 
     }
-    /* 
-    private void configureMenuItems(MenuButton menuButton) {
-        CheckMenuItem col1 = new CheckMenuItem("Nome");
-        col1.setOnAction(controller::colonna1);
-
-        CheckMenuItem col2 = new CheckMenuItem("Cose");
-        col2.setOnAction(controller::colonna2);
-
-        CheckMenuItem col3 = new CheckMenuItem("Citta");
-        col3.setOnAction(controller::colonna3);
-
-        CheckMenuItem col4 = new CheckMenuItem("Frutta");
-        col4.setOnAction(controller::colonna4);
-
-        menuButton.getItems().addAll(col1, col2, col3, col4);
+     @Override
+    public void update(Observable observable) {
+       
+        if (observable instanceof model1) {
+            updateView();
+        }
     }
-    */
+
+    private void updateView() {
+        Nominativo.setText(model.getUsername());
+    }
+   
 
     public void showView() {
         Stage stage = new Stage();

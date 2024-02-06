@@ -25,22 +25,50 @@ detroit
 doha
 dubai
 dublino
-edimburgo
-francoforte
+edimburgo 
+essen
+edmonton
+eindhoven
+eilat
+erfurt
+erie
+eugene
+ensenada 
+francoforte 
+firenze
+fukuoka
+filadelfia 
+fès
+fortaleza
+faro
+fresno
+friburgo
+flagstaff
+florianópolis
+faisalabad 
 ginevra
+glasgow
+genova
+guadalajara
+ghent
+graz
+goa
+georgetown
+granada
 goteborg
-helsinki
-honolulu
-houston
+guayaquil
 istanbul
-jakarta
-jeddah
-jerusalem
-johannesburg
-kansas city
-kuala lumpur
-kyiv
-la paz
+islamabad
+incheon
+indianapolis
+irvine
+inverness
+iquitos
+irkutsk
+izmir
+islamabad
+iligan
+indore 
 lisbona
 liverpool
 londra
@@ -80,11 +108,18 @@ porto
 praga
 pretoria
 quito
-rancho cucamonga
-reykjavik
-rio de janeiro
-riyadh
 roma
+rio de janeiro
+reykjavik
+rotterdam
+rabat
+riga
+riyadh
+rochester
+recife
+regina
+rostov-on-Don
+riverside 
 san diego
 san francisco
 san jose
@@ -102,9 +137,22 @@ tijuana
 torino
 toronto
 toulouse
+ulaanbaatar
+uppsala
+utrecht
+uberlandia
+ulan-ude 
 vancouver
 varsavia
 vienna
-warsaw
-wellington
-zurigo
+zurigo 
+zagabria 
+zamboanga
+zhangjiakou
+zanzibar City
+zaporizhzhia
+zaragoza
+zenica
+zhenjiang
+zibo
+zinder 

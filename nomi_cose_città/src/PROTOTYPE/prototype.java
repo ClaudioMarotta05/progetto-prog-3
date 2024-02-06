@@ -1,5 +1,5 @@
 package PROTOTYPE;
-import MVC.Tabella;
+import BUILDER.Tabella;
 import javafx.scene.control.TableView;
 
 public interface prototype extends Cloneable {

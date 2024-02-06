@@ -418,6 +418,12 @@ draga
 dragamine
 drappeggio
 durometro
+elicottero
+elastico
+erba
+esagono
+esame
+elezione 
 ebulliometro
 ebullioscopio
 ecogoniometro
@@ -1047,6 +1053,15 @@ portafiori
 portafogli
 quaderno
 quadro
+quadrato
+quark 
+quartetto
+quasar
+quercia
+quinoa 
+quindici 
+quattro stagioni
+quotidiano
 racchetta
 racchettone
 raccoglitore
@@ -1353,6 +1368,15 @@ trolley
 tromba
 trombetta
 tv
+uva
+ukulele
+uccello
+uniforme
+umidificatore
+uovo
+utensile
+ufficio
+uragano
 uccelliera
 uditofono
 udometro

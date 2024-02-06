@@ -1,5 +1,8 @@
 package MVC;
 
+import COMMAND.Back1Command;
+import COMMAND.Command;
+import COMMAND.SignUp2Command;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,7 +14,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Scene3View extends AnchorPane{
-     private VBox vbox;
+
+    private model1 model;
+
+    private VBox vbox;
     private Label usernameLabel;
     private TextField username;
     private Label passwordLabel;
@@ -23,20 +29,33 @@ public class Scene3View extends AnchorPane{
     private RadioButton femmina;
     private RadioButton altro;
     private Button signupButton;
+    private Button Back1;
 
    
-    Scene3controller controller = new Scene3controller(username, password,mail,maschio,femmina,altro);
+    Scene3controller controller;
 
-    public Scene3View() {
+    public Scene3View(model1 model) {
+        this.model = model;
       
         initialize();
     }
 
     private void initialize() {
+
+
+
         vbox = new VBox(10);
         vbox.setAlignment(Pos.CENTER);
         vbox.setLayoutX(132);
         vbox.setLayoutY(100);
+
+        Back1 = new Button("<-");
+        Back1.setLayoutX(0.0);
+        Back1.setLayoutY(0.0);
+
+
+
+       
 
         usernameLabel = new Label("Username");
         username = new TextField();
@@ -54,11 +73,20 @@ public class Scene3View extends AnchorPane{
 
         signupButton = new Button("Registrati!");
 
-        Scene3controller controller = new Scene3controller(username, password,mail,maschio,femmina,altro);
+        vbox.getChildren().addAll(usernameLabel, username, passwordLabel, password, mailLabel, mail, sessoLabel, maschio, femmina, altro, signupButton,Back1);
 
-        signupButton.setOnAction(controller::signup);
+        controller = new Scene3controller(model);
 
-        vbox.getChildren().addAll(usernameLabel, username, passwordLabel, password, mailLabel, mail, sessoLabel, maschio, femmina, altro, signupButton);
+        signupButton.setOnAction(event -> {Command signup2command = new SignUp2Command(controller, event);
+        signup2command.execute();
+        });
+
+        Back1.setOnAction(event -> {Command back1command = new Back1Command(controller, event);
+        back1command.execute(); 
+        });
+
+
+        
 
         getChildren().add(vbox);
 

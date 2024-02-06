@@ -1,39 +1,25 @@
 package MVC;
 
 import javafx.event.ActionEvent;
-import javafx.stage.Stage;
 import javafx.scene.Node;
+import javafx.stage.Stage;
 
-public class FinalSceneController {
-
+public class AppController {
     private model1 model;
 
-
-    public FinalSceneController(model1 model)
-    {
+    public AppController(model1 model) {
         this.model = model;
     }
 
+     public void Next(ActionEvent event){
+        
+        Scene1View scene1View = new Scene1View(model);
+        scene1View.showView();
 
-    public void back(ActionEvent event){
-
-       
-        Scene2View scene = new Scene2View(model);
-        scene.showView();
-
+      
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.close();
         
+       
     }
-   
-    
 }
-
-
-
-
-
-
-
-
-

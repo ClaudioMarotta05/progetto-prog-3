@@ -1,71 +1,51 @@
 
 
-
-
-
-import MVC.SceneController;
+import MVC.AppController;
+import MVC.model1;
 import javafx.application.Application;
-
-import javafx.geometry.Insets;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-public class App extends Application {
 
-    
+public class App extends Application {
+    private model1 model;
+    private AppController controller;
+    private Button Next;
+  
+    AnchorPane root;
+
+
     @Override
     public void start(Stage primaryStage) {
-       
-   primaryStage.setTitle("Nomi,Cose,Citta e altro");
+        primaryStage.setTitle("Nomi, Cose, Citta e altro");
 
-        // Create UI elements
-        Label usernameLabel = new Label("USERNAME");
-        TextField usernameTextField = new TextField();
-        Label passwordLabel = new Label("PASSWORD");
-        PasswordField passwordField = new PasswordField();
-        Button loginButton = new Button("Login");
-        Button signUpButton = new Button("Sign Up");
-
-        // Set up the layout
-        VBox vBox = new VBox(10);
-        vBox.setPadding(new Insets(20, 20, 20, 20));
-        vBox.getChildren().addAll(usernameLabel, usernameTextField, passwordLabel, passwordField, loginButton, signUpButton);
-
-        // Set up the root layout
-        AnchorPane root = new AnchorPane();
-        AnchorPane.setTopAnchor(vBox, 85.0);
-        AnchorPane.setLeftAnchor(vBox, 279.0);
-        root.getChildren().add(vBox);
-
+    
+        root = new AnchorPane();
        
 
-        // Create the scene
+        Next = new Button("Next");
+        
         Scene scene = new Scene(root, 785, 570);
         primaryStage.setScene(scene);
 
-        // Set up the controller
-        SceneController controller = new SceneController(usernameTextField, passwordField);
-        loginButton.setOnAction(controller::handleLoginAction);
-        signUpButton.setOnAction(controller::handleSignUpAction);
+        Next.setLayoutX(362.0);
+        Next.setLayoutY(286.0);
 
-        // Show the stage
+        root.getChildren().add(Next);
+
+       
+        model = new model1();
+        controller = new AppController(model);
+
+        Next.setOnAction(controller::Next);
+
+
         primaryStage.show();
-  
     }
 
-    
- 
 
-    
- public static void main(String[] args) {
+    public static void main(String[] args) {
         launch(args);
     }
-
-    
 }

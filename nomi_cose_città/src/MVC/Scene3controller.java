@@ -5,34 +5,41 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
-//import javafx.scene.Node;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-//import javafx.stage.Stage;
+import javafx.stage.Stage;
+import javafx.scene.Node;
 
 
 public class Scene3controller {
+    
     private TextField username;
     private TextField password;
     private TextField mail;
     private RadioButton maschio;
     private RadioButton femmina;
     private RadioButton altro;
+    private model1 model;
    
 
     
 
    
 
-    public Scene3controller(TextField username, TextField password, TextField mail,RadioButton maschio,RadioButton femmina,RadioButton altro) {
-        this.username = username;
-        this.password = password;
-        this.mail = mail;
-        this.maschio = maschio;
-        this.femmina = femmina;
-        this.altro = altro;
+    public Scene3controller(model1 model) {
+       this.model = model;
     }
 
+    public void back(ActionEvent event){
+
+       
+        Scene1View scene = new Scene1View(model);
+        scene.showView();
+
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+        
+    }
     
 
     
@@ -42,18 +49,18 @@ public class Scene3controller {
             
             writeToFile("nomi_cose_città/src/dizionario/credenziali.txt");}
 
-            model3 model = new model3();
-            model.setName(username.getText());
-            model.setPass(password.getText());
+           
+            model.setUsername(username.getText());
+            model.setPassword(password.getText());
             model.setMail(mail.getText());
 
 
-            /* 
+            
             Scene2View scene2View = new Scene2View(model);
             scene2View.showView();
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.close();
- */
+ 
 
     }
 
@@ -70,7 +77,7 @@ public class Scene3controller {
 
             // Usa BufferedWriter in modalità di append per aggiungere i dati al file
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-                // Scrivi i dati del form nel file
+               
                 writer.newLine();
                 writer.newLine();
                 writer.write(username.getText());
@@ -80,7 +87,7 @@ public class Scene3controller {
                 writer.write(mail.getText());
                 writer.newLine();
 
-                 // Aggiungi i dettagli dei radio buttons
+                
                  if (maschio.isSelected()) {
                     writer.write("Genere: Maschio");
                 } else if (femmina.isSelected()) {
