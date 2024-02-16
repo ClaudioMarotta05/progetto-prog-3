@@ -8,41 +8,50 @@ import COMMAND.Back3Command;
 import COMMAND.Command;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+// Questa classe rappresenta la scena finale dell'applicazione.
 public class FinalScene extends AnchorPane {
+    private model1 model; // Il modello dell'applicazione
+    private Label classifica; // Etichetta per la classifica parziale
+    private Label classificaFinale; // Etichetta per la classifica finale
+    private Label giocatori; // Etichetta per i nomi dei giocatori
+    private Label punteggio; // Etichetta per il punteggio
+    private VBox vb1; // VBox per la disposizione dei nomi dei giocatori
+    private VBox vb2; // VBox per la disposizione dei punteggi
+    private ListView<String> listView; // ListView per la visualizzazione della classifica
+    private List<String> giocatoriList; // Lista dei nomi dei giocatori
+    private List<Integer> punteggiList; // Lista dei punteggi
+    private String Nominativo; // Nome del giocatore attuale
+    private int[] arrayPunteggi; // Array dei punteggi
+    private int[] arrayPosizioni; // Array delle posizioni
+    private Button Back3; // Bottone per tornare indietro
 
-    private model1 model;
-    private Label classifica;
-    private Label classificaFinale;
-    private Label giocatori;
-    private Label punteggio;
-    private VBox vb1;
-    private VBox vb2;
-    private ListView<String> listView;
-    private List<String> giocatoriList;
-    private List<Integer> punteggiList;
-   
-    private String Nominativo;
-    private int[] arrayPunteggi;
-    private int[] arrayPosizioni;
-    private Button Back3;
-
+    // Costruttore per creare una nuova istanza di FinalScene con il modello specificato.
     public FinalScene(model1 model) {
         this.model = model;
         initialize();
     }
 
-    FinalSceneController controller = new FinalSceneController(model);
+    FinalSceneController controller = new FinalSceneController(model); // Controller per la scena finale
 
+    // Metodo per inizializzare la scena finale.
     private void initialize() {
+        setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        setPrefSize(800, 600);
 
         Nominativo = model.getUsername();
         arrayPunteggi = model.getPunteggi();
@@ -53,36 +62,38 @@ public class FinalScene extends AnchorPane {
         Back3.setLayoutY(0.0);
 
         classifica = new Label("CLASSIFICA PARZIALE");
-        classifica.setLayoutX(265.0);
+        classifica.setLayoutX(220.0);
         classifica.setLayoutY(14.0);
-        classifica.setFont(new Font("Bell MT Bold", 30));
+        classifica.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        classifica.setTextFill(Color.valueOf("#00008B"));
 
         classificaFinale = new Label("CLASSIFICA FINALE");
-        classificaFinale.setLayoutX(285.0);
+        classificaFinale.setLayoutX(220.0);
         classificaFinale.setLayoutY(200.0);
-        classificaFinale.setFont(new Font("Bell MT Bold", 30));
+        classificaFinale.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        classificaFinale.setTextFill(Color.valueOf("#00008B"));
 
         giocatori = new Label("Nomi Giocatori ");
         giocatori.setLayoutX(200.0);
         giocatori.setLayoutY(50.0);
-        giocatori.setFont(new Font("Bell MT Bold", 16));
+        giocatori.setFont(Font.font("Comic Sans MS", 22));
+        giocatori.setTextFill(Color.valueOf("#FFFFFF"));
 
         punteggio = new Label("Punteggio");
         punteggio.setLayoutX(500.0);
         punteggio.setLayoutY(50.0);
-        punteggio.setFont(new Font("Bell MT Bold", 16));
-
+        punteggio.setFont(Font.font("Comic Sans MS", 22));
+        punteggio.setTextFill(Color.valueOf("#FFFFFF"));
 
         vb1 = new VBox();
         vb1.setLayoutX(200.0);
         vb1.setLayoutY(80.0);
         for (int i = 0; i < arrayPosizioni.length; i++) {
             Label labelC;
-            
-            if(arrayPosizioni[i] == 0){
+            if (arrayPosizioni[i] == 0) {
                 labelC = new Label(Nominativo);
                 labelC.setFont(new Font("Bell MT Bold", 16));
-            }else{
+            } else {
                 labelC = new Label("Player " + arrayPosizioni[i]);
                 labelC.setFont(new Font("Bell MT Bold", 16));
             }
@@ -92,14 +103,13 @@ public class FinalScene extends AnchorPane {
         listView = new ListView<>();
         listView.setLayoutX(200.0);
         listView.setLayoutY(250.0);
-        listView.setPrefSize(300, 300);
+        listView.setPrefSize(400, 300);
 
         try (BufferedReader br = new BufferedReader(
-            new FileReader("nomi_cose_città/src/dizionario/classifica.txt"))){
+                new FileReader("nomi_cose_città/src/dizionario/classifica.txt"))) {
             giocatoriList = new ArrayList<>();
             punteggiList = new ArrayList<>();
             String line;
-
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" ");
                 if (parts.length == 2) {
@@ -107,23 +117,20 @@ public class FinalScene extends AnchorPane {
                     punteggiList.add(Integer.parseInt(parts[1]));
                 }
             }
-
             int punteggioParziale = calcolaPunteggioParziale();
             aggiornaPunteggio(punteggioParziale);
-
+        } catch (FileNotFoundException e) {
+            System.err.println("File non trovato: " + e.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Errore durante la lettura del file: " + e.getMessage());
         }
 
-          List<Integer> sortedIndexes = getSortedIndexes(punteggiList);
-
-           ObservableList<String> items = FXCollections.observableArrayList();
+        List<Integer> sortedIndexes = getSortedIndexes(punteggiList);
+        ObservableList<String> items = FXCollections.observableArrayList();
         for (int i = 0; i < sortedIndexes.size(); i++) {
             items.add(giocatoriList.get(sortedIndexes.get(i)) + " - " + punteggiList.get(sortedIndexes.get(i)) + " punti");
         }
-
         listView.setItems(items);
-
 
         vb2 = new VBox();
         vb2.setLayoutX(500.0);
@@ -134,28 +141,27 @@ public class FinalScene extends AnchorPane {
             vb2.getChildren().addAll(labelB);
         }
 
-      
-      
-        Back3.setOnAction(event -> {Command backcommand = new Back3Command(controller, event);
-        backcommand.execute(); 
+        Back3.setOnAction(event -> {
+            Command backcommand = new Back3Command(controller, event);
+            backcommand.execute();
         });
 
-
-
-        getChildren().addAll(classifica, vb1, vb2, classificaFinale, giocatori, punteggio,listView);
+        getChildren().addAll(classifica, vb1, vb2, classificaFinale, giocatori, punteggio, listView);
     }
 
+    // Metodo per mostrare la scena finale.
     public void showView() {
         Stage stage = new Stage();
         stage.setScene(new Scene(this, 800, 600));
         stage.show();
     }
 
+    // Metodo per calcolare il punteggio parziale.
     private int calcolaPunteggioParziale() {
-       
-        return arrayPunteggi[arrayPosizioni[0]]; 
+        return arrayPunteggi[arrayPosizioni[0]];
     }
 
+    // Metodo per aggiornare il punteggio.
     private void aggiornaPunteggio(int punteggioParziale) {
         int indiceGiocatore = giocatoriList.indexOf(Nominativo);
         if (indiceGiocatore >= 0) {
@@ -166,21 +172,21 @@ public class FinalScene extends AnchorPane {
                     writer.write(giocatoriList.get(i) + " " + punteggiList.get(i) + "\n");
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Errore durante la scrittura sul file: " + e.getMessage());
             }
         } else {
-           
             giocatoriList.add(Nominativo);
             punteggiList.add(punteggioParziale);
 
             try (FileWriter writer = new FileWriter("nomi_cose_città/src/dizionario/classifica.txt", true)) {
                 writer.write(Nominativo + " " + punteggioParziale + "\n");
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Errore durante la scrittura sul file: " + e.getMessage());
             }
         }
     }
 
+    // Metodo per ottenere gli indici ordinati in base ai punteggi.
     private List<Integer> getSortedIndexes(List<Integer> punteggi) {
         List<Integer> indexes = new ArrayList<>();
         for (int i = 0; i < punteggi.size(); i++) {

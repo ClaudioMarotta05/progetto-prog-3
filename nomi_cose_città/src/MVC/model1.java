@@ -7,32 +7,34 @@ import OBSERVER.Observable;
 import OBSERVER.Observer;
 
 
-public class model1 implements Observable{
-    private String username;
-    private String password;
-    private String mail;
-    private boolean cat1;
-    private boolean cat2;
-    private boolean cat3;
-    private boolean cat4;
-    private boolean cat5;
-    private boolean cat6;
-    private boolean cat7;
-    private boolean cat8;
-    private boolean cat9;
-    private boolean cat10;
-    private boolean cat11;
+// Questa classe rappresenta il modello dell'applicazione.
+public class model1 implements Observable {
+    private String username; // Username dell'utente
+    private String password; // Password dell'utente
+    private String mail; // Indirizzo email dell'utente
+    private boolean cat1; // Stato della categoria 1
+    private boolean cat2; // Stato della categoria 2
+    private boolean cat3; // Stato della categoria 3
+    private boolean cat4; // Stato della categoria 4
+    private boolean cat5; // Stato della categoria 5
+    private boolean cat6; // Stato della categoria 6
+    private boolean cat7; // Stato della categoria 7
+    private boolean cat8; // Stato della categoria 8
+    private boolean cat9; // Stato della categoria 9
+    private boolean cat10; // Stato della categoria 10
+    private boolean cat11; // Stato della categoria 11
+    private int numPlayers; // Numero di giocatori
+    private List<Observer> observers = new ArrayList<>(); // Lista degli osservatori
+    private int[] punteggi; // Punteggi dei giocatori
+    private int[] posizioni; // Posizioni dei giocatori
    
-    private int numPlayers;
-    private List<Observer> observers = new ArrayList<>();
-    private int[] punteggi;
-    private int[] posizioni;
-   
+
+    //Costruttore vuoto
     public model1() {
         
     }
 
-
+// Metodi getter e setter per l'username
     public String getUsername() {
         return username;
     }
@@ -42,7 +44,7 @@ public class model1 implements Observable{
         System.out.println(username);
         notifyObservers();
     }
-
+// Metodi getter e setter per la password
     public String getPassword() {
         return password;
     }
@@ -52,7 +54,7 @@ public class model1 implements Observable{
         System.out.println(password);
         notifyObservers();
     }
-
+// Metodi getter e setter per l'email
     public void setMail(String mail){
         this.mail = mail;
         System.out.println("mail " + mail);
@@ -64,6 +66,8 @@ public class model1 implements Observable{
         return this.mail;
     }
 
+
+// Metodi getter e setter per le categorie di parole
     public void setCat1(boolean value) {
         this.cat1 = value;
         System.out.println("bool nome " + cat1);
@@ -172,6 +176,9 @@ public class model1 implements Observable{
         return this.cat11;
     }
 
+    // Metodi getter e setter per i giocatori
+
+    
     public void setNumPlayers(int value) {
         this.numPlayers = value;
         notifyObservers();
@@ -201,7 +208,7 @@ public class model1 implements Observable{
      public int[] getPosizioni() {
          return this.posizioni;
      }
-
+    // Implementazione dei metodi dell'interfaccia Observable
      @Override
      public void addObserver(Observer observer) {
          observers.add(observer);

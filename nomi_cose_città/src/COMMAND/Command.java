@@ -1,5 +1,4 @@
 package COMMAND;
-
 public interface Command {
-    void execute();
+    void execute(); // Metodo per eseguire il comando.
 }

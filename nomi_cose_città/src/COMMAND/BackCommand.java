@@ -1,22 +1,22 @@
 package COMMAND;
 
-
 import MVC.Scene2Controller;
 import javafx.event.ActionEvent;
 
-public class BackCommand implements Command{
+// Questa classe rappresenta un comando per tornare alla schermata precedente.
+public class BackCommand implements Command {
+    private Scene2Controller controller; // Il controller della schermata
+    private ActionEvent event; // L'evento di azione che ha scatenato il comando
 
-    private Scene2Controller controller;
-    private ActionEvent event;
-
+    // Costruttore per creare un nuovo comando Back con il controller e l'evento specificati.
     public BackCommand(Scene2Controller controller, ActionEvent event) {
         this.controller = controller;
         this.event = event;
     }
 
+    // Metodo per eseguire il comando, che chiama il metodo back() sul controller passando l'evento.
     @Override
     public void execute() {
         controller.back(event);
     }
-    
 }

@@ -656,6 +656,7 @@ manetta
 manette
 manganello
 mattone
+matita
 mattonella
 mazza
 mazzafrusto
