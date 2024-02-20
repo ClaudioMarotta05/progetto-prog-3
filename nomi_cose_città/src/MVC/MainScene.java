@@ -26,7 +26,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-// Classe che rappresenta la scena principale dell'applicazione
+/**
+ * Classe che rappresenta la scena principale dell'applicazione.
+ * 
+ * @author Marco Michele Pisacane
+ * @author Francesco Fossari
+ * @author Claudio Marotta 
+ * 
+ * @version 1.0
+ */
 public class MainScene extends AnchorPane implements Observer{
     private TableView<Tabella> GG;
     private HBox Hbox;
@@ -44,7 +52,10 @@ public class MainScene extends AnchorPane implements Observer{
     model1 model;
     MainSceneController controller;
 
-    // Costruttore della scena principale
+    /**
+     * Costruttore della scena principale.
+     * @param model Il modello dell'applicazione.
+     */
     public MainScene(model1 model) {
         this.model=model;
         this.model.addObserver(this);
@@ -149,7 +160,10 @@ public class MainScene extends AnchorPane implements Observer{
         getChildren().addAll(GG, Hbox, Start, Lettera, RL, Submit, v1, TR, Termina, Nominativo,Back2);
     }
      
-     // Metodo per aggiornare la scena quando il modello cambia
+     /**
+     * Metodo per aggiornare la scena quando il modello cambia.
+     * @param observable L'oggetto osservabile (modello) che ha subito la modifica.
+     */
     @Override
     public void update(Observable observable) {
         if (observable instanceof model1) {
@@ -162,7 +176,9 @@ public class MainScene extends AnchorPane implements Observer{
         Nominativo.setText(model.getUsername());
     }
    
-    // Metodo per mostrare la scena
+    /**
+     * Metodo per mostrare la scena.
+     */
     public void showView() {
         Stage stage = new Stage();
         stage.setScene(new Scene(this, 800, 600));

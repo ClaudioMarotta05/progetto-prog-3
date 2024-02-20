@@ -18,11 +18,25 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * Classe principale dell'applicazione che gestisce l'interfaccia utente del gioco "Nomi, Cose e Città".
+ * 
+ * @author Marco Michele Pisacane
+ * @author Francesco Fossari
+ * @author Claudio Marotta 
+ * 
+ * @version 1.0
+ */
 public class App extends Application {
     private Button nextButton;
     private model1 model;
     private AppController controller;
 
+    /**
+     * Metodo principale che avvia l'applicazione.
+     *
+     * @param primaryStage Lo stage principale dell'applicazione
+     */
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Nomi, Cose, Citta e altro");
@@ -30,7 +44,6 @@ public class App extends Application {
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(20));
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-
 
         // Creazione del testo del regolamento
         Text title = new Text("Regolamento del Gioco Nomi, Cose e Città:");
@@ -95,6 +108,11 @@ public class App extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Metodo principale che avvia l'applicazione.
+     *
+     * @param args Gli argomenti passati alla riga di comando
+     */
     public static void main(String[] args) {
         launch(args);
     }

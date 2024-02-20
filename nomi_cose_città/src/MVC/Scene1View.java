@@ -1,5 +1,4 @@
 package MVC;
-
 import COMMAND.Command;
 import COMMAND.LoginCommand;
 import COMMAND.SignUpCommand;
@@ -16,17 +15,24 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-// Questa classe rappresenta la vista della scena di accesso dell'applicazione
+/**
+ * Questa classe rappresenta la vista della scena di accesso dell'applicazione.
+ * @author Marco Michele Pisacane
+ * @author Francesco Fossari
+ * @author Claudio Marotta 
+ * 
+ * @version 1.0
+ */
 public class Scene1View {
     private model1 model; // Modello dell'applicazione
     private SceneController controller; // Controller associato alla vista
-    Label usernameLabel; // Etichetta per l'input dell'username
-    TextField usernameTextField; // Campo di testo per l'username
-    Label passwordLabel; // Etichetta per l'input della password
-    PasswordField passwordField; // Campo di testo per la password
-    Button loginButton; // Pulsante per accedere
-    Button signUpButton; // Pulsante per registrarsi
-    VBox vBox; // Layout principale della scena
+    private Label usernameLabel; // Etichetta per l'input dell'username
+    private TextField usernameTextField; // Campo di testo per l'username
+    private Label passwordLabel; // Etichetta per l'input della password
+    private PasswordField passwordField; // Campo di testo per la password
+    private Button loginButton; // Pulsante per accedere
+    private Button signUpButton; // Pulsante per registrarsi
+    private VBox vBox; // Layout principale della scena
 
     // Costruttore della classe
     public Scene1View(model1 model) {

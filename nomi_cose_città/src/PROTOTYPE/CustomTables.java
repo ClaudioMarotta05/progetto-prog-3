@@ -5,25 +5,33 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-// Definisce una classe CustomTables che implementa l'interfaccia prototype
+/**
+ * Questa classe implementa l'interfaccia Prototype e fornisce un'implementazione per clonare la struttura di una TableView.
+ * 
+ * @author Marco Michele Pisacane
+ * @author Francesco Fossari
+ * @author Claudio Marotta 
+ * 
+ * @version 1.0
+ */
 public class CustomTables implements prototype {
 
-    // Metodo per clonare la struttura di una TableView
+    /**
+     * Clona la struttura di una TableView.
+     *
+     * @param originalTableView La TableView originale da clonare.
+     * @return Una TableView che rappresenta una copia della struttura della TableView originale.
+     */
+    @Override
     public TableView<Tabella> cloneTableViewStructure(TableView<Tabella> originalTableView) {
-        // Crea una nuova TableView vuota
         TableView<Tabella> clonedTableView = new TableView<>();
 
-        // Itera sulle colonne della TableView originale
         for (TableColumn<Tabella, ?> col : originalTableView.getColumns()) {
-            // Crea una nuova TableColumn con lo stesso nome e larghezza della colonna originale
             TableColumn<Tabella, ?> clonedCol = new TableColumn<>(col.getText());
             clonedCol.setMinWidth(col.getMinWidth());
             clonedCol.setMaxWidth(col.getMaxWidth());
             clonedCol.setPrefWidth(col.getPrefWidth());
 
-            // Imposta la PropertyValueFactory appropriata in base al nome della colonna
-            // Questo sembra essere un modo per associare i nomi delle colonne ai nomi dei campi di oggetto Tabella
-            // estrarre i dati per la visualizzazione nella TableView.
             if (col.getText().equals("nome")) {
                 clonedCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
             } else if (col.getText().equals("cosa")) {
@@ -50,14 +58,11 @@ public class CustomTables implements prototype {
                 clonedCol.setCellValueFactory(new PropertyValueFactory<>("tot"));
             }
 
-            // Aggiunge la nuova colonna alla TableView clonata
             clonedTableView.getColumns().add(clonedCol);
         }
 
-        // Aggiorna la TableView clonata
         clonedTableView.refresh();
 
-        // Restituisce la TableView clonata
         return clonedTableView;
     }
 }

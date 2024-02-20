@@ -9,7 +9,14 @@ import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
-// Questa classe gestisce le azioni per la terza scena dell'applicazione
+/**
+ * Questa classe gestisce le azioni per la terza scena dell'applicazione.
+ * @author Marco Michele Pisacane
+ * @author Francesco Fossari
+ * @author Claudio Marotta 
+ * 
+ * @version 1.0
+ */
 public class Scene3controller {
     
     private String username;
@@ -18,12 +25,20 @@ public class Scene3controller {
     private model1 model;
    
 
-    // Costruttore della classe
+    /**
+     * Costruttore della classe.
+     *
+     * @param model Il modello associato al controller.
+     */
     public Scene3controller(model1 model) {
        this.model = model; // Inizializza il modello
     }
 
-    // Metodo per tornare alla schermata di registrazione
+    /**
+     * Metodo per tornare alla schermata di registrazione.
+     *
+     * @param event L'evento di azione che ha scatenato l'azione di ritorno.
+     */
     public void back(ActionEvent event){
         // Crea una nuova istanza della schermata di registrazione
         Scene1View scene = new Scene1View(model);
@@ -34,7 +49,11 @@ public class Scene3controller {
         currentStage.close();
     }
 
-    // Metodo per gestire la registrazione dell'utente
+    /**
+     * Metodo per gestire la registrazione dell'utente.
+     *
+     * @param event L'evento di azione che ha scatenato l'azione di registrazione.
+     */
     public void signup(ActionEvent event) {
         // Ottiene le informazioni inserite dall'utente dal modello
         username = model.getUsername();
@@ -56,7 +75,12 @@ public class Scene3controller {
         }
     }
     
-    // Metodo per scrivere i dati nel file delle credenziali
+    /**
+     * Metodo per scrivere i dati nel file delle credenziali.
+     *
+     * @param filePath Il percorso del file delle credenziali.
+     * @throws IOException
+     */
     private void writeToFile(String filePath) {
         try {
             // Verifica se il file esiste già, altrimenti crea un nuovo file

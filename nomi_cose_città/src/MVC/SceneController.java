@@ -1,48 +1,68 @@
 package MVC;
 
-import STRATEGY.LetterStartSequentialFileSearchStrategy;
-import STRATEGY.SearchStrategy;
+import ADAPTER.Metodo1;
+import ADAPTER.adapter1;
+//import STRATEGY.LetterStartSequentialFileSearchStrategy;
+//import STRATEGY.SearchStrategy;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
-// Controller per la gestione delle azioni nelle diverse scene
+/**
+ * Controller per la gestione delle azioni nelle diverse scene.
+ * 
+ * @author Marco Michele Pisacane
+ * @author Francesco Fossari
+ * @author Claudio Marotta 
+ * 
+ * @version 1.0
+ */
 public class SceneController {
     
     private model1 model; // Modello associato al controller
 
-    // Costruttore del controller
+    /**
+     * Costruttore del controller.
+     *
+     * @param model Il modello associato al controller.
+     */
     public SceneController(model1 model) {
         this.model = model;
     }
 
-    // Gestione dell'azione di login
+    /**
+     * Gestione dell'azione di login.
+     *
+     * @param event L'evento di azione che ha scatenato l'azione di login.
+     */
     public void handleLoginAction(ActionEvent event) {
-        // Verifica che l'username e la password non siano vuoti
         if (!model.getUsername().isEmpty() && !model.getPassword().isEmpty()) {
-            // Utilizzo della strategia di ricerca sequenziale basata sulla lettera iniziale
-            SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-            // Ricerca dell'username e della password nel file di credenziali
-            boolean wordExists1 = sequentialSearch.searchWord(model.getUsername(), "credenziali.txt");
-            boolean wordExists2 = sequentialSearch.searchWord(model.getPassword(), "credenziali.txt");
-            // Se entrambe le parole esistono nel file di credenziali, procedi al login
+            //SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
+            //boolean wordExists1 = sequentialSearch.searchWord(model.getUsername(), "credenziali.txt");
+            //boolean wordExists2 = sequentialSearch.searchWord(model.getPassword(), "credenziali.txt");
+
+            Metodo1 ricerca1 = new Metodo1();
+            adapter1 adattatore1 = new adapter1(ricerca1);
+            boolean wordExists1 = adattatore1.search(model.getUsername(), "credenziali.txt");
+            boolean wordExists2 = adattatore1.search(model.getPassword(), "credenziali.txt");
+
             if(wordExists1 && wordExists2) {
-                // Visualizzazione della seconda scena (Scene2View)
                 Scene2View scene2View = new Scene2View(model);
                 scene2View.showView();
-                // Chiusura della finestra corrente
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 currentStage.close();
             }
         }
     }
 
-    // Gestione dell'azione di registrazione
+    /**
+     * Gestione dell'azione di registrazione.
+     *
+     * @param event L'evento di azione che ha scatenato l'azione di registrazione.
+     */
     public void handleSignUpAction(ActionEvent event){
-        // Visualizzazione della terza scena (Scene3View) per la registrazione
         Scene3View scene3View = new Scene3View(model);
         scene3View.showView1();
-        // Chiusura della finestra corrente
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.close();
     }

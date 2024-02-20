@@ -16,7 +16,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-// Vista per la registrazione degli utenti
+/**
+ * Vista per la registrazione degli utenti.
+ * 
+ * @author Marco Michele Pisacane
+ * @author Francesco Fossari
+ * @author Claudio Marotta 
+ * 
+ * @version 1.0
+ */
 public class Scene3View extends AnchorPane {
 
     private model1 model; // Modello associato alla vista
@@ -29,9 +37,13 @@ public class Scene3View extends AnchorPane {
     private TextField mail; // Campo di input per l'email
     private Button signupButton; // Bottone per confermare la registrazione
     private Button backButton; // Bottone per tornare alla schermata precedente
-    Scene3controller controller; // Controller associato alla vista
+    private Scene3controller controller; // Controller associato alla vista
 
-    // Costruttore della vista
+    /**
+     * Costruttore della vista.
+     *
+     * @param model Il modello associato alla vista.
+     */
     public Scene3View(model1 model) {
         this.model = model;
         initialize(); // Inizializzazione della vista
@@ -41,7 +53,7 @@ public class Scene3View extends AnchorPane {
     private void initialize() {
 
         // Impostazione dello sfondo bianco per la vista
-        setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, javafx.geometry.Insets.EMPTY)));
+        setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, javafx.geometry.Insets.EMPTY)));
 
         // Creazione del layout per i campi di input e i bottoni
         vbox = new VBox(10);

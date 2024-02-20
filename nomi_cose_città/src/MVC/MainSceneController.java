@@ -22,11 +22,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import ADAPTER.Metodo1;
+import ADAPTER.Metodo2;
+import ADAPTER.adapter1;
+import ADAPTER.adapter2;
 import PROTOTYPE.CustomTables;
-import STRATEGY.LetterStartSequentialFileSearchStrategy;
-import STRATEGY.SearchStrategy;
+//import STRATEGY.LetterStartSequentialFileSearchStrategy;
+//import STRATEGY.SearchStrategy;
 
-
+/**
+ * Questa classe rappresenta il controller per la scena principale dell'applicazione.
+ * 
+ * @author Marco Michele Pisacane
+ * @author Francesco Fossari
+ * @author Claudio Marotta 
+ * 
+ * @version 1.0
+ */
 public class MainSceneController {
     private model1 model;
     private TableView<Tabella> GG;
@@ -83,7 +96,18 @@ public class MainSceneController {
     private boolean sminchiamento = false ;
     private boolean sminchiamento2 = false ;
 
-    //Definiamo il costruttore del Controller
+    /**
+     * Costruttore della classe.
+     * @param GG la tabella del giocatore.
+     * @param Hbox la hbox che contiene i campi di testo per inserire le parole.
+     * @param v1 la vbox che contiene le tabelle clonate.
+     * @param Lettera la label che mostra la lettera casuale.
+     * @param TR il campo di testo che mostra il timer.
+     * @param RL Il bottone che genera sceglie la lettera.
+     * @param Start Il bottone che avvia il gioco.
+     * @param model Il modello associato al controller.
+     * 
+     */
     public MainSceneController(TableView<Tabella> GG, HBox Hbox, VBox v1, Label Lettera,Text TR,Button RL,Button Start,model1 model) {
     this.GG = GG;
     this.Hbox = Hbox;
@@ -95,7 +119,10 @@ public class MainSceneController {
     this.model = model;
 }
 
-    //Metodo per avviare il gioco
+    /**
+ * Metodo per avviare il gioco.
+ * @param event L'evento di azione che ha scatenato il metodo.
+ */
     public void startGame(ActionEvent event) {
        Start.setVisible(false);
        RL.setVisible(true);
@@ -314,7 +341,10 @@ public class MainSceneController {
         addTables();   
     }
 
-    //Aggiorniamo il valore del Timer una volta avviato
+     /**
+ * Metodo per aggiornare il valore del timer una volta avviato.
+ * @param event L'evento di azione che ha scatenato il metodo.
+ */
        public void updateTimer(ActionEvent event) {
         countdown--;
         TR.setText(String.valueOf(countdown));
@@ -333,7 +363,9 @@ public class MainSceneController {
         }
     }
 
-    //Calcoliamo i punteggi di ogni tabella in base alle parole 
+    /**
+    * Metodo per calcolare i punteggi di ogni tabella in base alle parole.
+    */
     public void PunteggioTabella() {
 
      int punteggioTotale;
@@ -407,8 +439,9 @@ public class MainSceneController {
         if(lastRow1.getNome().length() > 0 && lastRow2.getNome().length() == 0){
             //Verifichiamo che la parola sia valida
                 char primaLetteraInserita1 = lastRow1.getNome().charAt(0);
-                     SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                     boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getNome(), "nome.txt");
+                     Metodo1 ricerca1 = new Metodo1();
+                     adapter1 adattatore1 = new adapter1(ricerca1);
+                     boolean wordExists1 = adattatore1.search(lastRow1.getNome(), "nome.txt");
                      if (punteggioNome != 5 && wordExists1 && primaLetteraInserita1 == LetteraCasuale)
                      {
                         punteggioNome =10;
@@ -424,10 +457,10 @@ public class MainSceneController {
         if(lastRow1.getNome().length() > 0 && lastRow2.getNome().length() > 0 ){
                  char primaLetteraInserita1 = lastRow1.getNome().charAt(0);
                  char primaLetteraInserita2 = lastRow2.getNome().charAt(0);
-                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                 boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getNome(), "nome.txt");
-                 boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getNome(), "nome.txt");
-                
+                 Metodo1 ricerca1 = new Metodo1();
+                 adapter1 adattatore1 = new adapter1(ricerca1);
+                 boolean wordExists1 = adattatore1.search(lastRow1.getNome(), "nome.txt");
+                 boolean wordExists2 = adattatore1.search(lastRow2.getNome(), "nome.txt");
                 if (punteggioNome != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
                         if(lastRow1.getNome().equals(lastRow2.getNome())){
                                   punteggioNome = 5;
@@ -448,9 +481,9 @@ System.out.println("p nome" + punteggioNome);
             if(lastRow1.getCosa().length() > 0 && lastRow2.getCosa().length() == 0){
 
                 char primaLetteraInserita1 = lastRow1.getCosa().charAt(0);
-               
-                     SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                     boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getCosa(), "cosa.txt");
+                Metodo1 ricerca1 = new Metodo1();
+                adapter1 adattatore1 = new adapter1(ricerca1);
+                boolean wordExists1 = adattatore1.search(lastRow1.getCosa(), "cosa.txt");
                      if (punteggioCosa != 5 && wordExists1 && primaLetteraInserita1 == LetteraCasuale)
                      {
                         punteggioCosa =10;
@@ -471,10 +504,10 @@ System.out.println("p nome" + punteggioNome);
 
                  char primaLetteraInserita1 = lastRow1.getCosa().charAt(0);
                  char primaLetteraInserita2 = lastRow2.getCosa().charAt(0);
-                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                 boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getCosa(), "cosa.txt");
-                 boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getCosa(), "cosa.txt");
-    
+                 Metodo1 ricerca1 = new Metodo1();
+                 adapter1 adattatore1 = new adapter1(ricerca1);
+                 boolean wordExists1 = adattatore1.search(lastRow1.getCosa(), "cosa.txt");
+                 boolean wordExists2 = adattatore1.search(lastRow2.getCosa(), "cosa.txt");
                 if (punteggioCosa != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
 
                         if(lastRow1.getCosa().equals(lastRow2.getCosa())){
@@ -495,9 +528,9 @@ System.out.println("p cosa" + punteggioCosa);
             if(lastRow1.getCitta().length() > 0 && lastRow2.getCitta().length() == 0){
 
                 char primaLetteraInserita1 = lastRow1.getCitta().charAt(0);
-               
-                     SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                     boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getCitta(), "citta.txt");
+                Metodo1 ricerca1 = new Metodo1();
+                adapter1 adattatore1 = new adapter1(ricerca1);
+                boolean wordExists1 = adattatore1.search(lastRow1.getCitta(), "citta.txt");
                      if (punteggioCitta != 5 && wordExists1 && primaLetteraInserita1 == LetteraCasuale)
                      {
                         punteggioCitta =10;
@@ -516,9 +549,10 @@ System.out.println("p cosa" + punteggioCosa);
 
                  char primaLetteraInserita1 = lastRow1.getCitta().charAt(0);
                  char primaLetteraInserita2 = lastRow2.getCitta().charAt(0);
-                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                 boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getCitta(), "citta.txt");
-                 boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getCitta(), "citta.txt");
+                 Metodo1 ricerca1 = new Metodo1();
+                 adapter1 adattatore1 = new adapter1(ricerca1);
+                 boolean wordExists1 = adattatore1.search(lastRow1.getCitta(), "citta.txt");
+                 boolean wordExists2 = adattatore1.search(lastRow2.getCitta(), "citta.txt");
                 if (punteggioCitta != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
 
                         if(lastRow1.getCitta().equals(lastRow2.getCitta())){
@@ -541,9 +575,9 @@ System.out.println("p citta" + punteggioCitta);
             if(lastRow1.getFrutta().length() > 0 && lastRow2.getFrutta().length() == 0){
 
                 char primaLetteraInserita1 = lastRow1.getFrutta().charAt(0);
-               
-                     SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                     boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getFrutta(), "frutta.txt");
+                Metodo1 ricerca1 = new Metodo1();
+                adapter1 adattatore1 = new adapter1(ricerca1);
+                boolean wordExists1 = adattatore1.search(lastRow1.getFrutta(), "frutta.txt");
                      if (punteggioFrutta != 5 &&wordExists1 && primaLetteraInserita1 == LetteraCasuale)
                      {
                         punteggioFrutta =10;
@@ -562,10 +596,10 @@ System.out.println("p citta" + punteggioCitta);
 
                  char primaLetteraInserita1 = lastRow1.getFrutta().charAt(0);
                  char primaLetteraInserita2 = lastRow2.getFrutta().charAt(0);
-                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                 boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getFrutta(), "frutta.txt");
-                 boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getFrutta(), "frutta.txt");
-                
+                 Metodo1 ricerca1 = new Metodo1();
+                 adapter1 adattatore1 = new adapter1(ricerca1);
+                 boolean wordExists1 = adattatore1.search(lastRow1.getFrutta(), "frutta.txt");
+                 boolean wordExists2 = adattatore1.search(lastRow2.getFrutta(), "frutta.txt");
                 if (punteggioFrutta != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
 
                         if(lastRow1.getFrutta().equals(lastRow2.getFrutta())){
@@ -588,9 +622,9 @@ if (ColVerbi) {
     if(lastRow1.getVerbi().length() > 0 && lastRow2.getVerbi().length() == 0){
 
             char primaLetteraInserita1 = lastRow1.getVerbi().charAt(0);
-           
-                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                 boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getVerbi(), "verbi.txt");
+            Metodo1 ricerca1 = new Metodo1();
+            adapter1 adattatore1 = new adapter1(ricerca1);
+            boolean wordExists1 = adattatore1.search(lastRow1.getVerbi(), "verbi.txt");
                  if (punteggioVerbi != 5 && wordExists1 && primaLetteraInserita1 == LetteraCasuale)
                  {
                     punteggioVerbi =10;
@@ -609,10 +643,10 @@ if (ColVerbi) {
 
              char primaLetteraInserita1 = lastRow1.getVerbi().charAt(0);
              char primaLetteraInserita2 = lastRow2.getVerbi().charAt(0);
-             SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-             boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getVerbi(), "verbi.txt");
-             boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getVerbi(), "verbi.txt");
-            
+             Metodo1 ricerca1 = new Metodo1();
+             adapter1 adattatore1 = new adapter1(ricerca1);
+             boolean wordExists1 = adattatore1.search(lastRow1.getVerbi(), "verbi.txt");
+             boolean wordExists2 = adattatore1.search(lastRow2.getVerbi(), "verbi.txt");
             if (punteggioVerbi != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
 
                     if(lastRow1.getVerbi().equals(lastRow2.getVerbi())){
@@ -637,9 +671,9 @@ if (ColAnimali) {
     if(lastRow1.getAnimali().length() > 0 && lastRow2.getAnimali().length() == 0){
 
             char primaLetteraInserita1 = lastRow1.getAnimali().charAt(0);
-           
-                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                 boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getAnimali(), "animali.txt");
+            Metodo1 ricerca1 = new Metodo1();
+            adapter1 adattatore1 = new adapter1(ricerca1);
+            boolean wordExists1 = adattatore1.search(lastRow1.getAnimali(), "animali.txt");
                  if (punteggioAnimali != 5 &&wordExists1 && primaLetteraInserita1 == LetteraCasuale)
                  {
                     punteggioAnimali =10;
@@ -656,10 +690,10 @@ if (ColAnimali) {
     if(lastRow1.getAnimali().length() > 0 && lastRow2.getAnimali().length() > 0 ){
              char primaLetteraInserita1 = lastRow1.getAnimali().charAt(0);
              char primaLetteraInserita2 = lastRow2.getAnimali().charAt(0);
-             SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-             boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getAnimali(), "animali.txt");
-             boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getAnimali(), "animali.txt");
-            
+             Metodo1 ricerca1 = new Metodo1();
+             adapter1 adattatore1 = new adapter1(ricerca1);
+             boolean wordExists1 = adattatore1.search(lastRow1.getAnimali(), "animali.txt");
+             boolean wordExists2 = adattatore1.search(lastRow2.getAnimali(), "animali.txt");
             if (punteggioAnimali != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
 
                     if(lastRow1.getAnimali().equals(lastRow2.getAnimali())){
@@ -679,9 +713,9 @@ if (ColPiante) {
     if(lastRow1.getPiante().length() > 0 && lastRow2.getPiante().length() == 0){
 
             char primaLetteraInserita1 = lastRow1.getPiante().charAt(0);
-           
-                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                 boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getPiante(), "piante.txt");
+            Metodo1 ricerca1 = new Metodo1();
+            adapter1 adattatore1 = new adapter1(ricerca1);
+            boolean wordExists1 = adattatore1.search(lastRow1.getPiante(), "piante.txt");
                  if (punteggioPiante != 5 &&wordExists1 && primaLetteraInserita1 == LetteraCasuale){
                     punteggioPiante =10;
                     flagPiante++;
@@ -697,10 +731,10 @@ if (ColPiante) {
 
              char primaLetteraInserita1 = lastRow1.getPiante().charAt(0);
              char primaLetteraInserita2 = lastRow2.getPiante().charAt(0);
-             SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-             boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getPiante(), "piante.txt");
-             boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getPiante(), "piante.txt");
-            
+             Metodo1 ricerca1 = new Metodo1();
+             adapter1 adattatore1 = new adapter1(ricerca1);
+             boolean wordExists1 = adattatore1.search(lastRow1.getPiante(), "piante.txt");
+             boolean wordExists2 = adattatore1.search(lastRow2.getPiante(), "piante.txt");
             if (punteggioPiante != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
                     if(lastRow1.getPiante().equals(lastRow2.getPiante())){
                               punteggioPiante = 5;
@@ -719,8 +753,9 @@ if (ColCantanti) {
     if(lastRow1.getCantanti().length() > 0 && lastRow2.getCantanti().length() == 0){
 
             char primaLetteraInserita1 = lastRow1.getCantanti().charAt(0);
-            SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-            boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getCantanti(), "cantanti.txt");
+            Metodo1 ricerca1 = new Metodo1();
+            adapter1 adattatore1 = new adapter1(ricerca1);
+            boolean wordExists1 = adattatore1.search(lastRow1.getCantanti(), "cantanti.txt");
                  if (punteggioCantanti != 5 &&wordExists1 && primaLetteraInserita1 == LetteraCasuale)
                  {
                     punteggioCantanti =10;
@@ -737,9 +772,10 @@ if (ColCantanti) {
 
              char primaLetteraInserita1 = lastRow1.getCantanti().charAt(0);
              char primaLetteraInserita2 = lastRow2.getCantanti().charAt(0);
-             SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-             boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getCantanti(), "cantanti.txt");
-             boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getCantanti(), "cantanti.txt");
+             Metodo1 ricerca1 = new Metodo1();
+            adapter1 adattatore1 = new adapter1(ricerca1);
+            boolean wordExists1 = adattatore1.search(lastRow1.getCantanti(), "cantanti.txt");
+            boolean wordExists2 = adattatore1.search(lastRow2.getCantanti(), "cantanti.txt");
             if (punteggioCantanti != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
                     if(lastRow1.getCantanti().equals(lastRow2.getCantanti())){
                               punteggioCantanti = 5;
@@ -759,8 +795,9 @@ if (ColNazioni) {
 
     if(lastRow1.getNazioni().length() > 0 && lastRow2.getNazioni().length() == 0){
             char primaLetteraInserita1 = lastRow1.getNazioni().charAt(0);
-            SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-            boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getNazioni(), "nazioni.txt");
+            Metodo1 ricerca1 = new Metodo1();
+            adapter1 adattatore1 = new adapter1(ricerca1);
+            boolean wordExists1 = adattatore1.search(lastRow1.getNazioni(), "nazioni.txt");
                  if (punteggioNazioni != 5 &&wordExists1 && primaLetteraInserita1 == LetteraCasuale)
                  {
                     punteggioNazioni =10;
@@ -776,10 +813,10 @@ if (ColNazioni) {
 
              char primaLetteraInserita1 = lastRow1.getNazioni().charAt(0);
              char primaLetteraInserita2 = lastRow2.getNazioni().charAt(0);
-             SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-             boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getNazioni(), "nazioni.txt");
-             boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getNazioni(), "nazioni.txt");
-            
+             Metodo1 ricerca1 = new Metodo1();
+             adapter1 adattatore1 = new adapter1(ricerca1);
+             boolean wordExists1 = adattatore1.search(lastRow1.getNazioni(), "nazioni.txt");
+             boolean wordExists2 = adattatore1.search(lastRow2.getNazioni(), "nazioni.txt");
             if (punteggioNazioni != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
                     if(lastRow1.getNazioni().equals(lastRow2.getNazioni())){
                               punteggioNazioni = 5;
@@ -797,8 +834,9 @@ System.out.println("p nazioni" + punteggioNazioni);
  if (ColMestieri) {
         if(lastRow1.getMestieri().length() > 0 && lastRow2.getMestieri().length() == 0){
                 char primaLetteraInserita1 = lastRow1.getMestieri().charAt(0);
-                SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getMestieri(), "mestieri.txt");
+                Metodo1 ricerca1 = new Metodo1();
+                adapter1 adattatore1 = new adapter1(ricerca1);
+                boolean wordExists1 = adattatore1.search(lastRow1.getMestieri(), "mestieri.txt");
                      if (punteggioMestieri != 5 &&wordExists1 && primaLetteraInserita1 == LetteraCasuale)
                      {
                         punteggioMestieri =10;
@@ -814,10 +852,10 @@ System.out.println("p nazioni" + punteggioNazioni);
         if(lastRow1.getMestieri().length() > 0 && lastRow2.getMestieri().length() > 0 ){
                  char primaLetteraInserita1 = lastRow1.getMestieri().charAt(0);
                  char primaLetteraInserita2 = lastRow2.getMestieri().charAt(0);
-                 SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-                 boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getMestieri(), "mestieri.txt");
-                 boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getMestieri(), "mestieri.txt");
-                
+                 Metodo1 ricerca1 = new Metodo1();
+                 adapter1 adattatore1 = new adapter1(ricerca1);
+                 boolean wordExists1 = adattatore1.search(lastRow1.getMestieri(), "mestieri.txt");
+                 boolean wordExists2 = adattatore1.search(lastRow2.getMestieri(), "mestieri.txt");
                 if (punteggioMestieri != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
                         if(lastRow1.getMestieri().equals(lastRow2.getMestieri())){
                                   punteggioMestieri = 5;
@@ -837,8 +875,9 @@ if (ColCelebrita) {
 
     if(lastRow1.getCelebrita().length() > 0 && lastRow2.getCelebrita().length() == 0){
             char primaLetteraInserita1 = lastRow1.getCelebrita().charAt(0);
-            SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-            boolean wordExists1 = sequentialSearch.searchWord(lastRow1.getCelebrita(), "celebrita.txt");
+            Metodo1 ricerca1 = new Metodo1();
+            adapter1 adattatore1 = new adapter1(ricerca1);
+            boolean wordExists1 = adattatore1.search(lastRow1.getCelebrita(), "celebrita.txt");
                  if(punteggioCelebrita != 5 &&wordExists1 && primaLetteraInserita1 == LetteraCasuale)
                  {
                     punteggioCelebrita =10;
@@ -856,10 +895,10 @@ if (ColCelebrita) {
 
              char primaLetteraInserita1 = lastRow1.getCelebrita().charAt(0);
              char primaLetteraInserita2 = lastRow2.getCelebrita().charAt(0);
-             SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-             boolean  wordExists1 = sequentialSearch.searchWord(lastRow1.getCelebrita(), "celebrita.txt");
-             boolean  wordExists2 = sequentialSearch.searchWord(lastRow1.getCelebrita(), "celebrita.txt");
-            
+             Metodo1 ricerca1 = new Metodo1();
+             adapter1 adattatore1 = new adapter1(ricerca1);
+             boolean wordExists1 = adattatore1.search(lastRow1.getCelebrita(), "celebrita.txt");
+             boolean wordExists2 = adattatore1.search(lastRow2.getCelebrita(), "celebrita.txt");
             if (punteggioCelebrita != 5 && wordExists1 && wordExists2 && primaLetteraInserita1 == LetteraCasuale && primaLetteraInserita2 == LetteraCasuale) {
                     if(lastRow1.getCelebrita().equals(lastRow2.getCelebrita())){
                               punteggioCelebrita = 5;
@@ -888,8 +927,9 @@ if (ColCelebrita) {
        currentTableView.refresh();  
             }  
 }
-
-    //Metodo per l'aggiunta delle tabelle clonate 
+/**
+ * Metodo per l'aggiunta delle tabelle clonate.
+ */
     public void addTables(){
          double nuovaLarghezza = 0.0;
          int numCol = 0;
@@ -944,7 +984,11 @@ if (ColCelebrita) {
     }
 
 
-//Metodo per la generazione della lettera Casuale
+  
+ /**
+ * Metodo per la generazione della lettera Casuale
+ * @param event L'evento di azione che ha scatenato il metodo.
+ */
 public void randomChar(ActionEvent event) {
 
     numPartite +=1;
@@ -982,7 +1026,10 @@ public void randomChar(ActionEvent event) {
     }
 }
 
-//Metodo per tornare alla scena precedente
+ /**
+ * Metodo per tornare alla scena precedente
+ * @param event L'evento di azione che ha scatenato il metodo.
+ */
 public void back(ActionEvent event){
 
     Scene2View scene = new Scene2View(model);
@@ -992,7 +1039,10 @@ public void back(ActionEvent event){
     
 }
 
-//Metodo per inserire le parole all'interno della nostra tabella
+ /**
+ * Metodo per inserire le parole all'interno della nostra tabella
+ * @param event L'evento di azione che ha scatenato il metodo.
+ */
     public void submit(ActionEvent event) {
         sminchiamento2 = true;
         stopThreads();
@@ -1073,7 +1123,11 @@ if (ColCelebrita) {
         } 
     }
 
-    //Metodo per l'avvio dei Threads
+   /**
+ * Metodo per l'avvio dei Threads
+ * @param L la lettera casuale attuale
+ * @throws InterruptedException
+ */ 
     public void startThreads(char L) {
 
         for (TableView<Tabella> tableView : clonedTableViews) {
@@ -1119,10 +1173,16 @@ if (ColCelebrita) {
         }
     }
 
-    //Metodo per ricercare le parole da inserire all'interno delle tabelle clonate
+     /**
+ * Metodo per ricercare le parole da inserire all'interno delle tabelle clonate
+ * @param L la lettera casuale attuale
+ * @param tableview tabella in cui ricercare la parola
+ * @param columnHeaderText nome della colonna
+ */
     private boolean searchAndAddData(TableView<Tabella> tableView, String columnHeaderText, char L) {
-        SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-        String word = sequentialSearch.search(L, columnHeaderText.toLowerCase() + ".txt");
+        Metodo2 ricerca2 = new Metodo2();
+        adapter2 adattatore2 = new adapter2(ricerca2);
+        String word = adattatore2.search(Character.toString(L), columnHeaderText.toLowerCase() + ".txt");
         System.out.println("Word found for '" + columnHeaderText + "' column: " + word);
         boolean wordfinded;
 
@@ -1220,13 +1280,17 @@ if (ColCelebrita) {
         return wordfinded;
     }
 
-    //Metodo per l'arresto dei Threads
+    /**
+ * Metodo per l'arresto dei Threads
+ */ 
     public void stopThreads() {
         running = false;
     }
 
-
-   //Metodo per terminare il gioco
+ /**
+ * Metodo per terminare il gioco
+ * @param event L'evento di azione che ha scatenato il metodo.
+ */
     public void terminaPartita(ActionEvent event){
 
         int max;

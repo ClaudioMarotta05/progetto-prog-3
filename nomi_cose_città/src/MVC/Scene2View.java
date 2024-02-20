@@ -23,7 +23,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-// Questa classe rappresenta la vista per la seconda scena dell'applicazione
+/**
+ * Questa classe rappresenta la vista per la seconda scena dell'applicazione.
+ * La vista permette agli utenti di selezionare categorie e il numero di giocatori
+ * prima di avviare il gioco.
+ * @author Marco Michele Pisacane
+ * @author Francesco Fossari
+ * @author Claudio Marotta 
+ * 
+ * @version 1.0
+ */
+
 public class Scene2View extends AnchorPane implements Observer {
 
     private int numPlayers = 0; // Numero di giocatori

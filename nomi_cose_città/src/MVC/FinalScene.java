@@ -23,7 +23,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-// Questa classe rappresenta la scena finale dell'applicazione.
+/**
+ * Questa classe rappresenta la scena finale dell'applicazione.
+ * @author Marco Michele Pisacane
+ * @author Francesco Fossari
+ * @author Claudio Marotta 
+ * 
+ * @version 1.0
+ */
 public class FinalScene extends AnchorPane {
     private model1 model; // Il modello dell'applicazione
     private Label classifica; // Etichetta per la classifica parziale
@@ -40,7 +47,10 @@ public class FinalScene extends AnchorPane {
     private int[] arrayPosizioni; // Array delle posizioni
     private Button Back3; // Bottone per tornare indietro
 
-    // Costruttore per creare una nuova istanza di FinalScene con il modello specificato.
+    /**
+     * Costruttore per creare una nuova istanza di FinalScene con il modello specificato.
+     * @param model Il modello dell'applicazione.
+     */
     public FinalScene(model1 model) {
         this.model = model;
         initialize();
@@ -149,19 +159,28 @@ public class FinalScene extends AnchorPane {
         getChildren().addAll(classifica, vb1, vb2, classificaFinale, giocatori, punteggio, listView);
     }
 
-    // Metodo per mostrare la scena finale.
+    /**
+     * Metodo per mostrare la scena finale.
+     */
     public void showView() {
         Stage stage = new Stage();
         stage.setScene(new Scene(this, 800, 600));
         stage.show();
     }
 
-    // Metodo per calcolare il punteggio parziale.
+    /**
+     * Metodo per calcolare il punteggio parziale.
+     * @return Il punteggio parziale calcolato.
+     */
     private int calcolaPunteggioParziale() {
         return arrayPunteggi[arrayPosizioni[0]];
     }
 
-    // Metodo per aggiornare il punteggio.
+    /**
+     * Metodo per aggiornare il punteggio.
+     * @param punteggioParziale Il punteggio parziale da aggiungere.
+     * @throws  IOException
+     */
     private void aggiornaPunteggio(int punteggioParziale) {
         int indiceGiocatore = giocatoriList.indexOf(Nominativo);
         if (indiceGiocatore >= 0) {
@@ -186,7 +205,11 @@ public class FinalScene extends AnchorPane {
         }
     }
 
-    // Metodo per ottenere gli indici ordinati in base ai punteggi.
+    /**
+     * Metodo per ottenere gli indici ordinati in base ai punteggi.
+     * @param punteggi La lista dei punteggi.
+     * @return Una lista di indici ordinati.
+     */
     private List<Integer> getSortedIndexes(List<Integer> punteggi) {
         List<Integer> indexes = new ArrayList<>();
         for (int i = 0; i < punteggi.size(); i++) {
