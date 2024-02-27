@@ -2,8 +2,6 @@ package MVC;
 
 import ADAPTER.Metodo1;
 import ADAPTER.adapter1;
-//import STRATEGY.LetterStartSequentialFileSearchStrategy;
-//import STRATEGY.SearchStrategy;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -37,9 +35,6 @@ public class SceneController {
      */
     public void handleLoginAction(ActionEvent event) {
         if (!model.getUsername().isEmpty() && !model.getPassword().isEmpty()) {
-            //SearchStrategy sequentialSearch = new LetterStartSequentialFileSearchStrategy();
-            //boolean wordExists1 = sequentialSearch.searchWord(model.getUsername(), "credenziali.txt");
-            //boolean wordExists2 = sequentialSearch.searchWord(model.getPassword(), "credenziali.txt");
 
             Metodo1 ricerca1 = new Metodo1();
             adapter1 adattatore1 = new adapter1(ricerca1);

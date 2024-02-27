@@ -28,8 +28,6 @@ import ADAPTER.Metodo2;
 import ADAPTER.adapter1;
 import ADAPTER.adapter2;
 import PROTOTYPE.CustomTables;
-//import STRATEGY.LetterStartSequentialFileSearchStrategy;
-//import STRATEGY.SearchStrategy;
 
 /**
  * Questa classe rappresenta il controller per la scena principale dell'applicazione.
